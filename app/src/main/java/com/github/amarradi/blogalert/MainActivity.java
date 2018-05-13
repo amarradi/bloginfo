@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.github.amarradi.blogalert.service.BlogBroadcastReceiver;
+
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new FeedChecker());
+        BlogBroadcastReceiver.start(getApplicationContext());
     }
 
     private void createNotificationChannel() {
