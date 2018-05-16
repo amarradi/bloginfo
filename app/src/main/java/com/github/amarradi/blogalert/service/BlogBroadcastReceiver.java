@@ -10,14 +10,16 @@ import android.os.Build;
 
 public class BlogBroadcastReceiver extends BroadcastReceiver {
 
-    private static final String TIMED = "timed";
+   // private static final String TIMED = "timed";
+    private static PendingIntent alarmIntent;
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
         start(context);
 
     }
-
+    //https://developer.android.com/training/scheduling/alarms
     public static void start(Context context) {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -37,18 +39,18 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
     }
 
     public  static void stop(Context context) {
-
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = createPendingIntent(context);
-        alarmManager.cancel(pendingIntent);
-        pendingIntent.cancel();
-
+        Intent intent = new Intent(context, BlogBroadcastReceiver.class);
+        alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        if (alarmManager != null) {
+            alarmManager.cancel(alarmIntent);
+        }
     }
 
-    private static PendingIntent createPendingIntent(Context context) {
+    /*private static PendingIntent createPendingIntent(Context context) {
         Intent intent = new Intent(context, BlogBroadcastReceiver.class);
         intent.putExtra(TIMED, true);
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-    }
+    }*/
 }
