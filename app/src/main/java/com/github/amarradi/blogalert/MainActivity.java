@@ -28,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LAST_FEED_CONTENT_STORAGE_KEY = "LAST_FEED_CONTENT_STORAGE_KEY";
 
-    public static String FEED_URL = "http://www.marcusradisch.de/feed/";
-    public static String WEB_URL = "http://www.marcusradisch.de";
+    //public static String FEED_URL = "http://www.marcusradisch.de/feed/";
+    //public static String WEB_URL = "http://www.marcusradisch.de";
+    public static String FEED_URL = "https://www.presseportal.de/rss/presseportal.rss2";
+    public static String WEB_URL = "https://www.presseportal.de";
 
     private SharedPreferences preferences;
 
@@ -46,13 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new FeedChecker());
-        BlogBroadcastReceiver.start(getApplicationContext());
+        BlogBroadcastReceiver.restart(getApplicationContext());
     }
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //CharSequence name = "Marcus Radisch"
+            //String description = "http://www.marcusradisch.de"
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
@@ -110,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, 0);
 
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_launcher_background)
+                    .setSmallIcon(R.mipmap.turtle)
                     .setContentTitle(textTitle)
                     .setContentText(textContent)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)

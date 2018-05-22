@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BlogAlert</string>
+    <string name="app_name">BlogPostNotificator</string>
     <string name="channel_name">Marcus Radisch</string>
     <string name="channel_description">http://www.marcusradisch.de</string>
     <string name="notificationTitle">Neuigkeiten</string>

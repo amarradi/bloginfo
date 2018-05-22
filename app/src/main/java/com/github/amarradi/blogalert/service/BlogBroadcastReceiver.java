@@ -8,49 +8,55 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 
+import java.sql.Time;
+
 public class BlogBroadcastReceiver extends BroadcastReceiver {
 
-   // private static final String TIMED = "timed";
-    private static PendingIntent alarmIntent;
+    private static final String TIMED = "timed";
+
 
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        start(context);
+        if (intent.getBooleanExtra(TIMED, false)) {
+            start(context);
+        }
 
+    }
+
+    private static PendingIntent createPendingIntent(Context context) {
+        Intent intent = new Intent(context, BlogBroadcastReceiver.class);
+        intent.putExtra(TIMED, true);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
     //https://developer.android.com/training/scheduling/alarms
     public static void start(Context context) {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, BlogBroadcastReceiver.class);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = createPendingIntent(context);
 
         /* Alarm immer um 07:00Uhr */
-        Calendar calendar = null;
+        Calendar calendar;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
             calendar.set(Calendar.HOUR_OF_DAY, 7);
             if (alarmManager != null) {
-                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, alarmIntent);
+                alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pendingIntent);
             }
         }
     }
 
     public  static void stop(Context context) {
+
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, BlogBroadcastReceiver.class);
-        alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        if (alarmManager != null) {
-            alarmManager.cancel(alarmIntent);
-        }
+        PendingIntent pendingIntent = createPendingIntent(context);
+        alarmManager.cancel(pendingIntent);
+        pendingIntent.cancel();
     }
 
-    /*private static PendingIntent createPendingIntent(Context context) {
-        Intent intent = new Intent(context, BlogBroadcastReceiver.class);
-        intent.putExtra(TIMED, true);
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-    }*/
+    public static void restart(Context context) {
+        stop(context);
+        start(context);
+    }
 }
