@@ -18,7 +18,7 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getBooleanExtra(TIMED, false)) {
+        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             start(context);
         }
 
@@ -40,7 +40,8 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.HOUR_OF_DAY, 7);
+            calendar.set(Calendar.HOUR_OF_DAY, 23);
+            calendar.set(Calendar.MINUTE, 35);
             if (alarmManager != null) {
                 alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pendingIntent);
             }

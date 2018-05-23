@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
 import java.net.URL;
+
+import static com.github.amarradi.blogalert.R.drawable.turtle_start;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -115,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.turtle)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.turtle_round))
                     .setContentTitle(textTitle)
                     .setContentText(textContent)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
