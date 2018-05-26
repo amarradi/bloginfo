@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new FeedChecker());
-        BlogBroadcastReceiver.restart(getApplicationContext());
+        BlogBroadcastReceiver.start(getApplicationContext());
     }
 
     private void createNotificationChannel() {
