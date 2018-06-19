@@ -7,8 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
+import android.util.Log;
 
 import com.github.amarradi.blogalert.MainActivity;
+
+import static android.util.Log.*;
 
 public class BlogBroadcastReceiver extends BroadcastReceiver {
 
@@ -18,7 +21,9 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent serviceIntent = new Intent(context, MainActivity.class);
-        context.startService(serviceIntent);
+        //context.startService(serviceIntent);
+        start(context);
+
     }
 
 
@@ -41,24 +46,27 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
             Calendar currentCal = Calendar.getInstance();
             firingCal = Calendar.getInstance();
             firingCal.setTimeInMillis(System.currentTimeMillis());
-            firingCal.set(Calendar.HOUR_OF_DAY, 0);
-            firingCal.set(Calendar.MINUTE, 56);
-            firingCal.set(Calendar.SECOND, 7);
-            firingCal.set(Calendar.MILLISECOND,7);
+            firingCal.set(Calendar.HOUR_OF_DAY, 16);
+            firingCal.set(Calendar.MINUTE, 13);
+            firingCal.set(Calendar.SECOND, 00);
+            firingCal.set(Calendar.MILLISECOND,00);
             long intendedTime = firingCal.getTimeInMillis();
             long currentTime = currentCal.getTimeInMillis();
-            if (alarmManager != null && intendedTime >= currentTime ) {
-                alarmManager.setRepeating(AlarmManager.RTC, intendedTime, AlarmManager.INTERVAL_DAY, pendingIntent);
+            if (intendedTime >= currentTime ) {
+            //if (alarmManager != null && intendedTime >= currentTime ) {
+                Log.i("alarmManager <> null ","Logoutput");
+
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, intendedTime, AlarmManager.INTERVAL_DAY, pendingIntent);
             } else {
-                firingCal.add(Calendar.DAY_OF_MONTH,1);
+                firingCal.add(Calendar.MINUTE,1);
+                Log.i("alarmManager == null ","Logoutput");
                 intendedTime = firingCal.getTimeInMillis();
-                alarmManager.setRepeating(AlarmManager.RTC, intendedTime, AlarmManager.INTERVAL_DAY, pendingIntent);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, intendedTime, AlarmManager.INTERVAL_DAY, pendingIntent);
             }
         }
     }
 
     public  static void stop(Context context) {
-
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent pendingIntent = createPendingIntent(context);
         alarmManager.cancel(pendingIntent);

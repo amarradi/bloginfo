@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             new Thread(this).start();
         }
 
+
         @Override
         public void run() {
             String currentFeedContent = readFeedContent();
@@ -117,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, 0);
 
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                    .setSmallIcon(R.mipmap.turtle)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.turtle_round))
+                    .setSmallIcon(R.drawable.turtle_start)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.turtle_start))
                     .setContentTitle(textTitle)
                     .setContentText(textContent)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     .setAutoCancel(true);
 
             notificationManager.notify(0, mBuilder.build());
+            Log.i("Notification", "notify user");
         }
 
         private String getLastFeedContent() {

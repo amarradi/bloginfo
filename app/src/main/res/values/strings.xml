@@ -5,4 +5,5 @@
     <string name="notificationTitle">Neuigkeiten</string>
     <string name="notificationText">Es gibt Neuigkeiten auf %1$s</string>
     <string name="check_news_button">Check for News</string>
+    <string name="turtle">hero turtle</string>
 </resources>
