@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">BlogPostNotificator</string>
+    <string name="app_name">BlogInfo</string>
     <string name="channel_name">Marcus Radisch</string>
     <string name="channel_description">http://www.marcusradisch.de</string>
     <string name="notificationTitle">Neuigkeiten</string>
     <string name="notificationText">Es gibt Neuigkeiten auf %1$s</string>
     <string name="check_news_button">Check for News</string>
     <string name="turtle">hero turtle</string>
+    <string name="settings_time_set">Set</string>
+    <string name="settings_time_cancel">Cance</string>
 </resources>

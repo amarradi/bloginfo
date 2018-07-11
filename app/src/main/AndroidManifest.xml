@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.github.amarradi.blogalert">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -7,19 +8,24 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/turtle"
+        android:icon="@drawable/blogaler2t"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/turtle_round"
+        android:roundIcon="@drawable/blogaler2t"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="true"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name=".MainActivity"
+            android:icon="@drawable/blogaler2t">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".service.BlogBroadcastReceiver">
+        <receiver android:name=".receivers.BlogBroadcastReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
         </intent-filter>

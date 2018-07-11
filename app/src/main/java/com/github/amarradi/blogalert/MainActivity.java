@@ -11,26 +11,31 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.github.amarradi.blogalert.service.BlogBroadcastReceiver;
+import com.github.amarradi.blogalert.receivers.BlogBroadcastReceiver;
 
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Objects;
 
-import static com.github.amarradi.blogalert.R.drawable.turtle_start;
+import static java.util.Objects.*;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String CHANNEL_ID = MainActivity.class.getName();
 
     private static final String LAST_FEED_CONTENT_STORAGE_KEY = "LAST_FEED_CONTENT_STORAGE_KEY";
+
+    public static final int DEFAULT_ALARM_TIME = 7;
 
     //public static String FEED_URL = "http://www.marcusradisch.de/feed/";
     //public static String WEB_URL = "http://www.marcusradisch.de";
@@ -39,8 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+        }
+        Objects.requireNonNull(getSupportActionBar()).setLogo(R.mipmap.turtle_bg_layer);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -52,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new FeedChecker());
-        BlogBroadcastReceiver.start(getApplicationContext());
+
     }
 
     private void createNotificationChannel() {
@@ -69,12 +80,13 @@ public class MainActivity extends AppCompatActivity {
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            assert notificationManager != null;
             notificationManager.createNotificationChannel(channel);
         }
     }
 
 
-    class FeedChecker implements View.OnClickListener, Runnable {
+    public class FeedChecker implements View.OnClickListener, Runnable {
 
 
         @Override
@@ -119,15 +131,18 @@ public class MainActivity extends AppCompatActivity {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, 0);
 
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.turtle_start)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.turtle_start))
+                    .setSmallIcon(R.mipmap.turtle_bg_layer)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.lilu96))
                     .setContentTitle(textTitle)
                     .setContentText(textContent)
+                    .setColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true);
 
-            notificationManager.notify(0, mBuilder.build());
+            if (notificationManager != null) {
+                notificationManager.notify(0, mBuilder.build());
+            }
             Log.i("Notification", "notify user");
         }
 
