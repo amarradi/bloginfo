@@ -31,9 +31,7 @@ import static java.util.Objects.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String CHANNEL_ID = MainActivity.class.getName();
-
-    private static final String LAST_FEED_CONTENT_STORAGE_KEY = "LAST_FEED_CONTENT_STORAGE_KEY";
+    public static final String CHANNEL_ID = MainActivity.class.getName();
 
     public static final int DEFAULT_ALARM_TIME = 7;
 
@@ -41,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
     //public static String WEB_URL = "http://www.marcusradisch.de";
     public static String FEED_URL = "https://www.presseportal.de/rss/presseportal.rss2";
     public static String WEB_URL = "https://www.presseportal.de";
-
-    private SharedPreferences preferences;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -59,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
             createNotificationChannel();
         }
 
-        this.preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
         Button button = findViewById(R.id.button);
-        button.setOnClickListener(new FeedChecker());
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FeedChecker checker = new FeedChecker(getApplicationContext());
+                checker.check();
+            }
+        });
 
     }
 
@@ -86,14 +86,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public class FeedChecker implements View.OnClickListener, Runnable {
+    public static class FeedChecker implements Runnable {
 
+        private static final String LAST_FEED_CONTENT_STORAGE_KEY = "LAST_FEED_CONTENT_STORAGE_KEY";
 
-        @Override
-        public void onClick(View v) {
-            new Thread(this).start();
+        private final Context context;
+
+        public FeedChecker(Context context) {
+            this.context = context;
         }
 
+        public void check() {
+            new Thread(this).start();
+        }
 
         @Override
         public void run() {
@@ -120,22 +125,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private void notifyUser() {
-            Context context = getApplicationContext();
-            String textTitle = getString(R.string.notificationTitle);
-            String textContent = getString(R.string.notificationText, WEB_URL);
+            String textTitle = this.context.getString(R.string.notificationTitle);
+            String textContent = this.context.getString(R.string.notificationText, WEB_URL);
 
-            NotificationManager notificationManager = (NotificationManager) context
+            NotificationManager notificationManager = (NotificationManager) this.context
                     .getSystemService(Context.NOTIFICATION_SERVICE);
 
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(WEB_URL));
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, browserIntent, 0);
 
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.context, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.turtle_bg_layer)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.lilu96))
+                    .setLargeIcon(BitmapFactory.decodeResource(this.context.getResources(), R.drawable.lilu96))
                     .setContentTitle(textTitle)
                     .setContentText(textContent)
-                    .setColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
+                    .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true);
@@ -147,10 +151,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private String getLastFeedContent() {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
             return preferences.getString(LAST_FEED_CONTENT_STORAGE_KEY, "");
         }
 
         private void setLastFeedContent(String feedContent) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
             preferences.edit().putString(LAST_FEED_CONTENT_STORAGE_KEY, feedContent).apply();
         }
     }
