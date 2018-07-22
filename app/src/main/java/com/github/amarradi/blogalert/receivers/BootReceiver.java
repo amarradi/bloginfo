@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import com.github.amarradi.blogalert.FeedChecker;
 import com.github.amarradi.blogalert.helpers.AlarmHelper;
 
 import java.util.Objects;
@@ -41,6 +42,10 @@ public class BootReceiver extends BroadcastReceiver {
                 long toRingAt = prefs.getLong("scan_daily_interval", 0);
                 alarm.cancelAlarm(context);
                 alarm.setAlarm(context, toRingAt);
+            }
+
+            if (AlarmHelper.ACTION_BLOG_NOTIFICATION.equals(intent.getAction())) {
+                new FeedChecker(context).check();
             }
         }
     }

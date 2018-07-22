@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 
 import com.github.amarradi.blogalert.MainActivity;
-import com.github.amarradi.blogalert.receivers.BlogBroadcastReceiver;
 import com.github.amarradi.blogalert.receivers.BootReceiver;
 
 import java.text.SimpleDateFormat;
@@ -21,7 +20,7 @@ import static android.app.AlarmManager.INTERVAL_DAY;
 public class AlarmHelper {
 
     private AlarmManager alarmManager;
-    private final static String ACTION_BLOG_NOTIFICATION = "com.github.amarradi.blogalert.NOTIFICATION";
+    public final static String ACTION_BLOG_NOTIFICATION = "com.github.amarradi.blogalert.NOTIFICATION";
 
     public void setAlarm (Context context, long setNoteAt) {
         Calendar defaultNoteAt = Calendar.getInstance();
@@ -30,6 +29,7 @@ public class AlarmHelper {
             defaultNoteAt.set(Calendar.HOUR, MainActivity.DEFAULT_ALARM_TIME);
             defaultNoteAt.set(Calendar.MINUTE, 0);
             defaultNoteAt.set(Calendar.SECOND, 0);
+            //defaultNoteAt.add(Calendar.SECOND, 10);
         } else {
             Calendar now = Calendar.getInstance();
             defaultNoteAt.setTimeInMillis(setNoteAt);
@@ -45,7 +45,7 @@ public class AlarmHelper {
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Intent alarmIntent = new Intent(context, BlogBroadcastReceiver.class);
+        Intent alarmIntent = new Intent(context, BootReceiver.class);
         alarmIntent.setAction(ACTION_BLOG_NOTIFICATION);
 
         PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,
@@ -71,7 +71,7 @@ public class AlarmHelper {
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Intent alarmIntent = new Intent(context, BlogBroadcastReceiver.class);
+        Intent alarmIntent = new Intent(context, BootReceiver.class);
         alarmIntent.setAction(ACTION_BLOG_NOTIFICATION);
 
         PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,
