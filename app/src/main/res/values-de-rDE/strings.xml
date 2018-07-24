@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notificationText">Es gibt Neuigkeiten auf %1$s</string>
+    <string name="check_news_button">Suche Nachrichten</string>
+    <string name="notificationTitle">News</string>
+    <string name="description_text">Klicken Sie den Button um auf marcusradisch.de nach neuen Beiträgen zu suchen</string>
+</resources>

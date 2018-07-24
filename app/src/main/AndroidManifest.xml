@@ -17,7 +17,8 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".MainActivity"
-            android:icon="@drawable/blogaler2t">
+            android:icon="@drawable/blogaler2t"
+            android:theme="@style/BlogInfo">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

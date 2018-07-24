@@ -17,6 +17,8 @@ import org.apache.commons.io.IOUtils;
 import java.io.InputStream;
 import java.net.URL;
 
+import static com.github.amarradi.blogalert.R.mipmap.turtle_timmy_round;
+
 public class FeedChecker implements Runnable {
 
     private static final String LAST_FEED_CONTENT_STORAGE_KEY = "LAST_FEED_CONTENT_STORAGE_KEY";
@@ -66,8 +68,8 @@ public class FeedChecker implements Runnable {
         PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, browserIntent, 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.context, MainActivity.CHANNEL_ID)
-                .setSmallIcon(R.mipmap.turtle_bg_layer)
-                .setLargeIcon(BitmapFactory.decodeResource(this.context.getResources(), R.drawable.lilu96))
+                .setSmallIcon(R.mipmap.turtle_timmy_round)
+                //.setLargeIcon(R.mipmap.turtle_timmy_round)
                 .setContentTitle(textTitle)
                 .setContentText(textContent)
                 .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))

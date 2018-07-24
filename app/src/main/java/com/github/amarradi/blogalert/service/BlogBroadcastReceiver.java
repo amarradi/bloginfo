@@ -46,8 +46,8 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
             Calendar currentCal = Calendar.getInstance();
             firingCal = Calendar.getInstance();
             firingCal.setTimeInMillis(System.currentTimeMillis());
-            firingCal.set(Calendar.HOUR_OF_DAY, 16);
-            firingCal.set(Calendar.MINUTE, 13);
+            firingCal.set(Calendar.HOUR_OF_DAY, 15);
+            firingCal.set(Calendar.MINUTE, 41);
             firingCal.set(Calendar.SECOND, 00);
             firingCal.set(Calendar.MILLISECOND,00);
             long intendedTime = firingCal.getTimeInMillis();
