@@ -15,7 +15,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="208dp"
-        android:background="@drawable/button"
+        android:background="@drawable/button_check"
         android:text="@string/check_news_button"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

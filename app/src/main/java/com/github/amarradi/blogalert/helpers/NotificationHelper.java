@@ -24,6 +24,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorRes;
@@ -65,7 +66,9 @@ public class NotificationHelper extends ContextWrapper {
                     .setColorized(true)
                     .setContentIntent(pI)
                     .setLargeIcon(notifyPicture)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.blogaler2t))
                     .setSmallIcon(R.drawable.blogaler2t)
+                    //.setSmallIcon(R.mipmap.turtle_timmy)
                     .setAutoCancel(true);
 
         } else {
@@ -75,7 +78,9 @@ public class NotificationHelper extends ContextWrapper {
                     .setContentText(body)
                     .setContentIntent(pI)
                     .setLargeIcon(notifyPicture)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.blogaler2t))
                     .setSmallIcon(R.drawable.blogaler2t)
+                  //  .setSmallIcon(R.mipmap.turtle_timmy)
                     .setAutoCancel(true);
         }
     }
