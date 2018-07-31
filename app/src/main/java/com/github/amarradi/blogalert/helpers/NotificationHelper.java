@@ -47,8 +47,8 @@ public class NotificationHelper extends ContextWrapper {
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ONE_ID,
                     CHANNEL_ONE_NAME, NotificationManager.IMPORTANCE_HIGH);
             notificationChannel.enableLights(true);
-            notificationChannel.setLightColor(Color.RED);
-            notificationChannel.setShowBadge(true);
+            //notificationChannel.setLightColor(Color.RED);
+           // notificationChannel.setShowBadge(true);
             notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             getManager().createNotificationChannel(notificationChannel);
         }
@@ -61,26 +61,27 @@ public class NotificationHelper extends ContextWrapper {
                                                 @ColorRes int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return new Notification.Builder(getApplicationContext(), CHANNEL_ONE_ID)
-                    .setContentTitle(title)
+                    .setSmallIcon(R.drawable.blogaler2t_transparent)
+                    .setContentTitle("Titel")
                     .setContentText(body)
-                    .setColorized(true)
+
+                    .setColorized(false)
                     .setContentIntent(pI)
-                    .setLargeIcon(notifyPicture)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.blogaler2t))
-                    .setSmallIcon(R.drawable.blogaler2t)
-                    //.setSmallIcon(R.mipmap.turtle_timmy)
+                  //  .setLargeIcon(notifyPicture)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))
                     .setAutoCancel(true);
 
         } else {
             //noinspection deprecation
             return new Notification.Builder(getApplicationContext())
-                    .setContentTitle(title)
+                    .setSmallIcon(R.drawable.ic_stat_name)
+                    .setContentTitle("Titel")
+
                     .setContentText(body)
+
                     .setContentIntent(pI)
-                    .setLargeIcon(notifyPicture)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.blogaler2t))
-                    .setSmallIcon(R.drawable.blogaler2t)
-                  //  .setSmallIcon(R.mipmap.turtle_timmy)
+                  //  .setLargeIcon(notifyPicture)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))
                     .setAutoCancel(true);
         }
     }

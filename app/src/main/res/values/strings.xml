@@ -2,11 +2,9 @@
     <string name="app_name" translatable="false">BlogInfo</string>
     <string name="channel_name" translatable="false">Marcus Radisch</string>
     <string name="channel_description" translatable="false">marcusradisch.de</string>
-    <string name="notificationTitle">Neuigkeiten</string>
+    <string name="notificationTitle">News</string>
     <string name="check_news_button">Check for News</string>
-    <string name="turtle" translatable="false">hero turtle</string>
-    <string name="settings_time_set" translatable="false">Set</string>
-    <string name="settings_time_cancel" translatable="false">Cancel</string>
+    <string name="settings_time_set">Set</string>
+    <string name="settings_time_cancel">Cancel</string>
     <string name="notificationText">There are news on %1$s</string>
-    <string name="description_text">click to check if marcusradisch.de has a new Blogpost</string>
 </resources>

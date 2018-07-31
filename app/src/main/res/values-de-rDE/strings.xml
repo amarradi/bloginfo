@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="notificationText">Es gibt Neuigkeiten auf %1$s</string>
-    <string name="check_news_button">Suche Nachrichten</string>
+    <string name="notificationText">Es gibt einen neuen Beitrag auf %1$ss</string>
+    <string name="check_news_button">Suche</string>
     <string name="notificationTitle">News</string>
-    <string name="description_text">Klicken Sie den Button um auf marcusradisch.de nach neuen Beiträgen zu suchen</string>
+    <string name="settings_time_cancel">abbrechen</string>
+    <string name="settings_time_set">speichern</string>
 </resources>

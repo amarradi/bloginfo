@@ -17,6 +17,8 @@ import org.apache.commons.io.IOUtils;
 import java.io.InputStream;
 import java.net.URL;
 
+import static android.app.Notification.DEFAULT_ALL;
+import static android.app.Notification.DEFAULT_LIGHTS;
 import static com.github.amarradi.blogalert.R.mipmap.turtle_timmy_round;
 
 public class FeedChecker implements Runnable {
@@ -68,10 +70,12 @@ public class FeedChecker implements Runnable {
         PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, browserIntent, 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.context, MainActivity.CHANNEL_ID)
-                .setSmallIcon(R.mipmap.turtle_timmy_round)
+                .setSmallIcon(R.drawable.blogaler2t_transparent)
                 //.setLargeIcon(R.mipmap.turtle_timmy_round)
                 .setContentTitle(textTitle)
                 .setContentText(textContent)
+                .setDefaults(DEFAULT_LIGHTS)
+                .setColorized(true)
                 .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
