@@ -1,5 +1,6 @@
 package com.github.amarradi.blogalert;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -71,15 +72,18 @@ public class FeedChecker implements Runnable {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(MainActivity.WEB_URL));
         PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, browserIntent, 0);
 
+        @SuppressLint("ResourceAsColor")
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.context, MainActivity.CHANNEL_ID)
                 .setSmallIcon(R.drawable.blogaler2t_transparent)
-                //.setLargeIcon(R.mipmap.turtle_timmy_round)
                 .setContentTitle(textTitle)
                 .setContentText(textContent)
                 .setDefaults(DEFAULT_LIGHTS)
+                .setVibrate(new long[]{250,250,250})
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.turtle_timmy_round))
 
                 .setColorized(true)
                 .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))
+                .setLights(R.color.colorPrimary, 1000, 1000)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
