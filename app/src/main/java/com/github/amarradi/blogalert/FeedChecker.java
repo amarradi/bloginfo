@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -75,6 +77,7 @@ public class FeedChecker implements Runnable {
                 .setContentTitle(textTitle)
                 .setContentText(textContent)
                 .setDefaults(DEFAULT_LIGHTS)
+
                 .setColorized(true)
                 .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
