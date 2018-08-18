@@ -2,7 +2,7 @@
 <resources>
     <string name="notificationText">Es gibt einen neuen Beitrag auf %1$ss</string>
     <string name="check_news_button">Suche</string>
-    <string name="notificationTitle">News</string>
+    <string name="notificationTitle">neuer Beitrag</string>
     <string name="settings_time_cancel">abbrechen</string>
     <string name="settings_time_set">speichern</string>
 </resources>

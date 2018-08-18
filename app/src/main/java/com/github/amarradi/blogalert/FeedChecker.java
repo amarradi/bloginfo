@@ -64,7 +64,7 @@ public class FeedChecker implements Runnable {
 
     private void notifyUser() {
         String textTitle = this.context.getString(R.string.notificationTitle);
-        String textContent = this.context.getString(R.string.notificationText, MainActivity.WEB_URL);
+        String textContent = this.context.getString(R.string.notificationText, this.context.getString(R.string.channel_url));
 
         NotificationManager notificationManager = (NotificationManager) this.context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
@@ -80,7 +80,6 @@ public class FeedChecker implements Runnable {
                 .setDefaults(DEFAULT_LIGHTS)
                 .setVibrate(new long[]{250,250,250})
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.turtle_timmy_round))
-
                 .setColorized(true)
                 .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))
                 .setLights(R.color.colorPrimary, 1000, 1000)
