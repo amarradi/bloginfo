@@ -8,15 +8,14 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/button_check"
-        android:drawableEnd="@drawable/btn_refresh"
-        android:drawableRight="@drawable/btn_refresh"
-        android:text="@string/check_news_button"
-        android:textColor="@color/colorAccent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/btn_round"
+
+        android:drawableTop="@drawable/btn_refresh"
+        android:textColor="@color/colorBlack"
+        android:gravity="center_vertical|center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,14 +23,12 @@
         app:layout_constraintVertical_bias="0.498" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/h_guideline"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/v_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

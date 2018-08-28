@@ -64,7 +64,7 @@ public class FeedChecker implements Runnable {
 
     private void notifyUser() {
         String textTitle = this.context.getString(R.string.notificationTitle);
-        String textContent = this.context.getString(R.string.notificationText, this.context.getString(R.string.channel_url));
+        String textContent = this.context.getString(R.string.notificationText);
 
         NotificationManager notificationManager = (NotificationManager) this.context
                 .getSystemService(Context.NOTIFICATION_SERVICE);

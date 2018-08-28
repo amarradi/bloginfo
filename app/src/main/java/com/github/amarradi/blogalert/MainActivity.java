@@ -2,10 +2,14 @@ package com.github.amarradi.blogalert;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +28,31 @@ public class MainActivity extends AppCompatActivity {
     public static String WEB_URL = "http://www.marcusradisch.de";
     //public static String FEED_URL = "https://www.presseportal.de/rss/presseportal.rss2";
     //public static String WEB_URL = "https://www.presseportal.de";
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                Intent intentAbout = new Intent(this, AboutActivity.class);
+                startActivity(intentAbout);
+                return true;
+            case R.id.thanks:
+                Intent intentThanks = new Intent(this, ThanksActivity.class);
+                startActivity(intentThanks);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
