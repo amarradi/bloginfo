@@ -41,19 +41,21 @@ public class FeedChecker implements Runnable {
     @Override
     public void run() {
         String currentFeedContent = readFeedContent();
-        String lastFeedContent = getLastFeedContent();
+        if (currentFeedContent != null) {
 
-        if (currentFeedContent != null && !currentFeedContent.equals(lastFeedContent))
-            notifyUser();
+            String lastFeedContent = getLastFeedContent();
+            if (!currentFeedContent.equals(lastFeedContent))
+                notifyUser();
 
-        setLastFeedContent(currentFeedContent);
+            setLastFeedContent(currentFeedContent);
+        }
     }
 
     private String readFeedContent() {
         InputStream in = null;
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
-            return IOUtils.toString(in, "utf-8");
+            return IOUtils.toString(in, "utf-8").trim();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -95,7 +97,7 @@ public class FeedChecker implements Runnable {
 
     private String getLastFeedContent() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
-        return preferences.getString(LAST_FEED_CONTENT_STORAGE_KEY, "");
+        return preferences.getString(LAST_FEED_CONTENT_STORAGE_KEY, "").trim();
     }
 
     private void setLastFeedContent(String feedContent) {
