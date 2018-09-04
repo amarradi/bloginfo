@@ -11,7 +11,7 @@
     <string name="notificationTitle">new blogpost</string>
     <string name="settings_time_set">Set</string>
     <string name="settings_time_cancel">Cancel</string>
-    <string name="notificationText">There are news on &appname;</string>
+    <string name="notificationText">There are news on &channel_url;</string>
     <string name="about_the_app">about the app</string>
     <string name="thanks">thanks</string>
     <string name="image" translatable="false">image</string>

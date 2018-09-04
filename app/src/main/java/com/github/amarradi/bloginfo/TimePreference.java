@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.amarradi.blogalert;
+package com.github.amarradi.bloginfo;
 
 import android.content.Context;
 import android.content.res.TypedArray;

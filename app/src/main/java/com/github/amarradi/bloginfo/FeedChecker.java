@@ -1,4 +1,4 @@
-package com.github.amarradi.blogalert;
+package com.github.amarradi.bloginfo;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -21,10 +19,6 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
 import java.net.URL;
-
-import static android.app.Notification.DEFAULT_ALL;
-import static android.app.Notification.DEFAULT_LIGHTS;
-import static com.github.amarradi.blogalert.R.mipmap.turtle_timmy_round;
 
 public class FeedChecker implements Runnable {
 
@@ -53,7 +47,7 @@ public class FeedChecker implements Runnable {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(context,R.string.noUpdate,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.noUpdate,Toast.LENGTH_SHORT).show();
                     }
                 });
             }

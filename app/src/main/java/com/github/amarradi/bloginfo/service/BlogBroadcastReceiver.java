@@ -1,4 +1,4 @@
-package com.github.amarradi.blogalert.service;
+package com.github.amarradi.bloginfo.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -9,9 +9,7 @@ import android.icu.util.Calendar;
 import android.os.Build;
 import android.util.Log;
 
-import com.github.amarradi.blogalert.MainActivity;
-
-import static android.util.Log.*;
+import com.github.amarradi.bloginfo.MainActivity;
 
 public class BlogBroadcastReceiver extends BroadcastReceiver {
 

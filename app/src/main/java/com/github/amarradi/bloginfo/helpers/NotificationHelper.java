@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.amarradi.blogalert.helpers;
+package com.github.amarradi.bloginfo.helpers;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -25,11 +25,10 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorRes;
 
-import com.github.amarradi.blogalert.R;
+import com.github.amarradi.bloginfo.R;
 
 public class NotificationHelper extends ContextWrapper {
     private NotificationManager notifManager;

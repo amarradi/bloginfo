@@ -1,4 +1,4 @@
-package com.github.amarradi.blogalert.helpers;
+package com.github.amarradi.bloginfo.helpers;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
-import com.github.amarradi.blogalert.MainActivity;
-import com.github.amarradi.blogalert.receivers.BootReceiver;
+import com.github.amarradi.bloginfo.MainActivity;
+import com.github.amarradi.bloginfo.receivers.BootReceiver;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

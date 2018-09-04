@@ -1,4 +1,4 @@
-package com.github.amarradi.blogalert;
+package com.github.amarradi.bloginfo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.github.amarradi.blogalert", appContext.getPackageName());
+        assertEquals("com.github.amarradi.bloginfo", appContext.getPackageName());
     }
 }

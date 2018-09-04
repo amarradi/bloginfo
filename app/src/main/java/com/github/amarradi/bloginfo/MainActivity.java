@@ -1,4 +1,4 @@
-package com.github.amarradi.blogalert;
+package com.github.amarradi.bloginfo;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

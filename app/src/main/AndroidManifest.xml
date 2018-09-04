@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.github.amarradi.blogalert">
+    package="com.github.amarradi.bloginfo">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
+            android:name="com.github.amarradi.bloginfo.MainActivity"
             android:icon="@mipmap/turtle_timmy_round"
             android:theme="@style/BlogInfo">
             <intent-filter>
@@ -25,21 +25,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutActivity"
+        <activity android:name="com.github.amarradi.bloginfo.AboutActivity"
             android:icon="@mipmap/turtle_timmy_round"
-        android:parentActivityName=".MainActivity"/>
+        android:parentActivityName="com.github.amarradi.bloginfo.MainActivity"/>
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+            android:value="com.github.amarradi.bloginfo.MainActivity" />
 
-        <activity android:name=".ThanksActivity"
+        <activity android:name="com.github.amarradi.bloginfo.ThanksActivity"
             android:icon="@mipmap/turtle_timmy_round"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName="com.github.amarradi.bloginfo.MainActivity"/>
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+            android:value="com.github.amarradi.bloginfo.MainActivity" />
 
-        <receiver android:name=".receivers.BootReceiver">
+        <receiver android:name="com.github.amarradi.bloginfo.receivers.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

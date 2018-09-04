@@ -1,4 +1,4 @@
-package com.github.amarradi.blogalert.receivers;
+package com.github.amarradi.bloginfo.receivers;
 
 /*
  * Copyright (C) 2015-2016 The Food Restriction Project Team
@@ -25,8 +25,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-import com.github.amarradi.blogalert.FeedChecker;
-import com.github.amarradi.blogalert.helpers.AlarmHelper;
+import com.github.amarradi.bloginfo.FeedChecker;
+import com.github.amarradi.bloginfo.helpers.AlarmHelper;
 
 import java.util.Objects;
 
