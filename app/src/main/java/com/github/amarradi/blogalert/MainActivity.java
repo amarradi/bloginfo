@@ -12,11 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.Objects;
 
-import static java.util.Objects.*;
+import static java.util.Objects.requireNonNull;
 
 public class MainActivity extends AppCompatActivity {
 

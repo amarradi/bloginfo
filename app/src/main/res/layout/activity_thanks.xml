@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true" >
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,6 @@
         android:contentDescription="@string/image"
         android:src="@drawable/blogaler2t_transparent" />
 
-
     <TextView
         android:id="@+id/tvThanks"
         android:layout_width="wrap_content"
@@ -26,6 +25,7 @@
         android:text="@string/thankyou"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/thankyoujesus"
         android:layout_width="wrap_content"
@@ -34,7 +34,24 @@
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/thankyougod"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/bible_verse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/bibleverse"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="5dp"
+        android:background="?android:attr/listDivider" />
+
     <TextView
         android:id="@+id/thankyousr"
         android:layout_width="wrap_content"
@@ -43,7 +60,13 @@
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/thankyou_sr"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="5dp"
+        android:background="?android:attr/listDivider" />
 
     <TextView
         android:id="@+id/thankyousd"
@@ -53,6 +76,6 @@
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/thankyou_sd"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 </ScrollView>

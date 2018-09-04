@@ -18,7 +18,6 @@
             android:contentDescription="@string/image"
             android:src="@drawable/blogaler2t_transparent" />
 
-
         <TextView
             android:id="@+id/tvAppName"
             android:layout_width="wrap_content"
@@ -27,6 +26,7 @@
             android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tvVersion"
             android:layout_width="wrap_content"
@@ -35,6 +35,7 @@
             android:padding="5dp"
             android:text="@string/version"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -66,6 +67,16 @@
             android:layout_margin="5dp"
             android:background="?android:attr/listDivider" />
         <TextView
+            android:id="@+id/tvMyURL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/my_url"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:autoLink="web"/>
+
+        <TextView
             android:id="@+id/tvAppHowItWorksheadLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,6 +85,7 @@
             android:text="@string/tv_howitworks"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"/>
+
         <TextView
             android:id="@+id/tvAppHowItWorks"
             android:layout_width="wrap_content"
@@ -81,6 +93,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:text="@string/tv_howitworksdescription"/>
+
         <TextView
             android:id="@+id/tvAppStartManual"
             android:layout_width="wrap_content"
@@ -88,8 +101,5 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:text="@string/tv_AppStartManual"/>
-
-
-
     </LinearLayout>
 </ScrollView>

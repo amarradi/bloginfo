@@ -23,7 +23,7 @@ public class AboutActivity extends AppCompatActivity {
 
         String version_text = String.format(resources.getString(R.string.version), BuildConfig.VERSION_NAME);
         appVersion.setText(version_text);
-        //appVersion.setText(R.string.version + BuildConfig.VERSION_NAME.toString());
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

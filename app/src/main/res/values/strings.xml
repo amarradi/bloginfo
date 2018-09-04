@@ -8,9 +8,7 @@
     <string name="app_name" translatable="false">BlogInfo</string>
     <string name="channel_name">Marcus Radisch</string>
     <string name="channel_description">marcusradisch.de</string>
-    <string name="channel_url">marcusradisch.de</string>
     <string name="notificationTitle">new blogpost</string>
-    <string name="check_news_button">Check for News</string>
     <string name="settings_time_set">Set</string>
     <string name="settings_time_cancel">Cancel</string>
     <string name="notificationText">There are news on &appname;</string>
@@ -18,14 +16,16 @@
     <string name="thanks">thanks</string>
     <string name="image" translatable="false">image</string>
     <string name="about_title">The &appname; Project</string>
-    <string name="about_info">The &appname; Project is a project created to inform my friend\'s when i published a new blogpost</string>
+    <string name="about_info">The &appname; Project is a project created to inform my friend\'s when i published a new blogpost on &channel_url;</string>
     <string name="tv_howitworks">how &appname; works</string>
-    <string name="tv_howitworksdescription">The &appname;-App checks in the morning at 07:00 o\'clock if the website &channel_url; has been updated. If the web page has been updated, a notification will be displayed. By clicking on the notification the website &channel_url; can be visit.</string>
+    <string name="tv_howitworksdescription">The &appname;-App checks in the morning at 07:00 o\'clock if the RSS-Feed of the website &channel_url; has been updated. If the web page has been updated, a notification will be displayed. By clicking on the notification the website &channel_url; can be visit.</string>
     <string name="thankyou">Thanks</string>
     <string name="thankyougod">Thank you Jesus that you died for me on the cross and rose again.</string>
+    <string name="bibleverse">For God loved the world so much that he gave his only Son, so that everyone who believes in him may not die but have eternal life. John 3:16 GNB</string>
     <string name="thankyou_sr">Thank you sea for your help in developing the app</string>
     <string name="thankyou_sd">Thank you timmy Logodesign</string>
-    <string name="tv_AppStartManual">&appname;-App can also be started manually to check the website &channel_url;. For this, only the round button on the start page must be pressed.</string>
+    <string name="tv_AppStartManual">&appname;-App can also be started manually to check the RSS-Feed from the website &channel_url;. For this, only the round button on the start page must be pressed.</string>
     <string name="noUpdate">There are no updates on &channel_url;</string>
     <string name="version">version: %1$s</string>
+    <string name="my_url">My blog is located at <a href="www.marcusradisch.de">www.marcusradisch.de</a>.</string>
 </resources>
