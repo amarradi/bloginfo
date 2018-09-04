@@ -31,6 +31,7 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainActivity" />
+
         <activity android:name=".ThanksActivity"
             android:icon="@mipmap/turtle_timmy_round"
             android:parentActivityName=".MainActivity"/>

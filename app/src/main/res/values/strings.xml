@@ -27,4 +27,5 @@
     <string name="thankyou_sd">Thank you timmy Logodesign</string>
     <string name="tv_AppStartManual">&appname;-App can also be started manually to check the website &channel_url;. For this, only the round button on the start page must be pressed.</string>
     <string name="noUpdate">There are no updates on &channel_url;</string>
+    <string name="version">version: %1$s</string>
 </resources>
