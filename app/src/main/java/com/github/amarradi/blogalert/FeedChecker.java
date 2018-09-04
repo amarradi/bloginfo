@@ -10,10 +10,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
 
@@ -44,12 +46,21 @@ public class FeedChecker implements Runnable {
         if (currentFeedContent != null) {
 
             String lastFeedContent = getLastFeedContent();
-            if (!currentFeedContent.equals(lastFeedContent))
+            if (!currentFeedContent.equals(lastFeedContent)) {
                 notifyUser();
-
+            } else {
+                Handler h = new Handler(context.getMainLooper());
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context,R.string.noUpdate,Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
             setLastFeedContent(currentFeedContent);
         }
     }
+
 
     private String readFeedContent() {
         InputStream in = null;
@@ -79,12 +90,12 @@ public class FeedChecker implements Runnable {
                 .setSmallIcon(R.drawable.blogaler2t_transparent)
                 .setContentTitle(textTitle)
                 .setContentText(textContent)
-                .setDefaults(DEFAULT_LIGHTS)
+              //  .setDefaults(DEFAULT_LIGHTS)
                 .setVibrate(new long[]{250,250,250})
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.turtle_timmy_round))
                 .setColorized(true)
                 .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))
-                .setLights(R.color.colorPrimary, 1000, 1000)
+                .setLights(R.color.colorPrimaryLight, 1000, 1000)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
