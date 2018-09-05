@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.github.amarradi.bloginfo.MainActivity"
+            android:name=".MainActivity"
             android:icon="@mipmap/turtle_timmy_round"
             android:theme="@style/BlogInfo">
             <intent-filter>
@@ -25,21 +25,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.github.amarradi.bloginfo.AboutActivity"
+        <activity android:name=".AboutActivity"
             android:icon="@mipmap/turtle_timmy_round"
-        android:parentActivityName="com.github.amarradi.bloginfo.MainActivity"/>
+        android:parentActivityName=".MainActivity"/>
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.github.amarradi.bloginfo.MainActivity" />
+            android:value=".MainActivity" />
 
-        <activity android:name="com.github.amarradi.bloginfo.ThanksActivity"
+        <activity android:name=".ThanksActivity"
             android:icon="@mipmap/turtle_timmy_round"
-            android:parentActivityName="com.github.amarradi.bloginfo.MainActivity"/>
+            android:parentActivityName=".MainActivity"/>
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.github.amarradi.bloginfo.MainActivity" />
+            android:value=".MainActivity" />
 
-        <receiver android:name="com.github.amarradi.bloginfo.receivers.BootReceiver">
+        <receiver android:name=".receivers.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
