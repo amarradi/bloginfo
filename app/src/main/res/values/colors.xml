@@ -5,6 +5,6 @@
     <color name="colorPrimaryLight">#6ABF69</color>
     <color name="colorAccent">#FFCC66</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorGrey">#E0E0E0</color>
+    <color name="colorGrey">#e0e0e0</color>
     <color name="colorWhite">#FFFFFF</color>
 </resources>
