@@ -25,9 +25,11 @@ public class FeedChecker implements Runnable {
     private static final String LAST_FEED_CONTENT_STORAGE_KEY = "LAST_FEED_CONTENT_STORAGE_KEY";
 
     private final Context context;
+    private final boolean showToast;
 
-    public FeedChecker(Context context) {
+    public FeedChecker(Context context, boolean showToast) {
         this.context = context;
+        this.showToast = showToast;
     }
 
     public void check() {
@@ -42,7 +44,7 @@ public class FeedChecker implements Runnable {
             String lastFeedContent = getLastFeedContent();
             if (!currentFeedContent.equals(lastFeedContent)) {
                 notifyUser();
-            } else {
+            } else if (this.showToast) {
                 Handler h = new Handler(context.getMainLooper());
                 h.post(new Runnable() {
                     @Override

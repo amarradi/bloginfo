@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FeedChecker checker = new FeedChecker(getApplicationContext());
+                FeedChecker checker = new FeedChecker(getApplicationContext(), true);
                 checker.check();
             }
         });

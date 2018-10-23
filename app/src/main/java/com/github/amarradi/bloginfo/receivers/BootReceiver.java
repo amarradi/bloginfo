@@ -45,7 +45,7 @@ public class BootReceiver extends BroadcastReceiver {
             }
 
             if (AlarmHelper.ACTION_BLOG_NOTIFICATION.equals(intent.getAction())) {
-                new FeedChecker(context).check();
+                new FeedChecker(context, false).check();
             }
         }
     }
