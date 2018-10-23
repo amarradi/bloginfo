@@ -31,14 +31,9 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainActivity" />
-
         <activity android:name=".ThanksActivity"
             android:icon="@mipmap/turtle_timmy_round"
             android:parentActivityName=".MainActivity"/>
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
-
         <receiver android:name=".receivers.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
