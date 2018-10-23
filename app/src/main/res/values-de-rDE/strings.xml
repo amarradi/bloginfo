@@ -4,11 +4,11 @@
     <!ENTITY channel_url "marcusradisch.de">
     ]>
 <resources>
-    <string name="notificationText">Neuen Beitrag auf &channel_url; veröffentlicht</string>
-    <string name="notificationTitle">neuer Beitrag</string>
+    <string name="notificationText">Neuer Beitrag auf &channel_url; veröffentlicht</string>
+    <string name="notificationTitle">Neuer Beitrag</string>
     <string name="settings_time_cancel">abbrechen</string>
     <string name="settings_time_set">speichern</string>
-    <string name="about_the_app">Über die App</string>
+    <string name="about_the_app">Über diese App</string>
     <string name="thanks">Danke</string>
     <string name="about_title">Das &appname; Projekt</string>
     <string name="about_info">Das &appname; Projekt wurde gestartet, um meine Freunde zu informieren, wenn ich einen neuen Blogbeitrag veröffentlicht habe.</string>
