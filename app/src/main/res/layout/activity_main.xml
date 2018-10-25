@@ -13,8 +13,8 @@
 
         android:background="@drawable/btn_round"
 
-        android:drawableTop="@drawable/btn_refresh"
-        android:textColor="@color/colorBlack"
+        android:drawableStart="@drawable/btn_refresh"
+        android:drawableLeft="@drawable/btn_refresh"
         android:gravity="center_vertical|center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

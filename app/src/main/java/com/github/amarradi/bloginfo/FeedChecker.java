@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
@@ -49,7 +50,9 @@ public class FeedChecker implements Runnable {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(context, R.string.noUpdate,Toast.LENGTH_SHORT).show();
+                        Toast toast = Toast.makeText(context, R.string.noUpdate, Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.START, 0, 0);
+                        toast.show();
                     }
                 });
             }

@@ -11,12 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:contentDescription="@string/image"
-            android:src="@drawable/blogaler2t_transparent" />
+
 
     <TextView
         android:id="@+id/tvThanks"
@@ -78,6 +73,13 @@
         android:padding="5dp"
         android:text="@string/thankyou_sd"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/blogaler2t_transparent" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
