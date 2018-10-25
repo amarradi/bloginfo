@@ -15,16 +15,12 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
 
     private static final String TIMED = "timed";
 
-
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent serviceIntent = new Intent(context, MainActivity.class);
         //context.startService(serviceIntent);
         start(context);
-
     }
-
-
 
     private static PendingIntent createPendingIntent(Context context) {
         Intent intent = new Intent(context, BlogBroadcastReceiver.class);
@@ -46,19 +42,21 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
             firingCal.setTimeInMillis(System.currentTimeMillis());
             firingCal.set(Calendar.HOUR_OF_DAY, 15);
             firingCal.set(Calendar.MINUTE, 41);
-            firingCal.set(Calendar.SECOND, 00);
-            firingCal.set(Calendar.MILLISECOND,00);
+            firingCal.set(Calendar.SECOND, 0);
+            firingCal.set(Calendar.MILLISECOND, 0);
             long intendedTime = firingCal.getTimeInMillis();
             long currentTime = currentCal.getTimeInMillis();
             if (intendedTime >= currentTime ) {
             //if (alarmManager != null && intendedTime >= currentTime ) {
                 Log.i("alarmManager <> null ","Logoutput");
 
+                assert alarmManager != null;
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, intendedTime, AlarmManager.INTERVAL_DAY, pendingIntent);
             } else {
                 firingCal.add(Calendar.MINUTE,1);
                 Log.i("alarmManager == null ","Logoutput");
                 intendedTime = firingCal.getTimeInMillis();
+                assert alarmManager != null;
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, intendedTime, AlarmManager.INTERVAL_DAY, pendingIntent);
             }
         }
@@ -67,6 +65,7 @@ public class BlogBroadcastReceiver extends BroadcastReceiver {
     public  static void stop(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent pendingIntent = createPendingIntent(context);
+        assert alarmManager != null;
         alarmManager.cancel(pendingIntent);
         pendingIntent.cancel();
     }

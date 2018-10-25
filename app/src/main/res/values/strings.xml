@@ -27,5 +27,7 @@
     <string name="tv_AppStartManual">&appname;-App can also be started manually to check the RSS-Feed from the website &channel_url;. For this, only the round button on the start page must be pressed.</string>
     <string name="noUpdate">There are no updates on &channel_url;</string>
     <string name="version">version: %1$s</string>
+    <string name="ask">check RSS-Feed</string>
     <string name="my_url">My blog is located at <a href="www.marcusradisch.de">www.marcusradisch.de</a>.</string>
+
 </resources>

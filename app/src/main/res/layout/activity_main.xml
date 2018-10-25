@@ -8,13 +8,18 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
         android:background="@drawable/btn_round"
-
-        android:drawableStart="@drawable/btn_refresh"
-        android:drawableLeft="@drawable/btn_refresh"
+        android:drawableEnd="@drawable/btn_refresh"
+        android:drawableRight="@drawable/btn_refresh"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:text="@string/ask"
+        android:textColor="@color/colorWhite"
         android:gravity="center_vertical|center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,5 +38,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
 
 </android.support.constraint.ConstraintLayout>

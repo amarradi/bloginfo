@@ -13,7 +13,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.Gravity;
 import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
@@ -25,10 +24,13 @@ public class FeedChecker implements Runnable {
 
     private static final String LAST_FEED_CONTENT_STORAGE_KEY = "LAST_FEED_CONTENT_STORAGE_KEY";
 
+
     private final Context context;
     private final boolean showToast;
 
     public FeedChecker(Context context, boolean showToast) {
+
+
         this.context = context;
         this.showToast = showToast;
     }
@@ -39,6 +41,7 @@ public class FeedChecker implements Runnable {
 
     @Override
     public void run() {
+
         String currentFeedContent = readFeedContent();
         if (currentFeedContent != null) {
 
@@ -50,8 +53,8 @@ public class FeedChecker implements Runnable {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
+
                         Toast toast = Toast.makeText(context, R.string.noUpdate, Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.START, 0, 0);
                         toast.show();
                     }
                 });
