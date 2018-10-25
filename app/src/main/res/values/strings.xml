@@ -24,7 +24,7 @@
     <string name="bibleverse">For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. John 3:16 NIV</string>
     <string name="thankyou_sr">Thank you sea for your help in developing the app.</string>
     <string name="thankyou_sd">Thank you timmy for the design of the turtle logo.</string>
-    <string name="tv_AppStartManual">&appname;-App can also be started manually to check the RSS-Feed from the website &channel_url;. For this, only the round button on the start page must be pressed.</string>
+    <string name="tv_AppStartManual">&appname;-App can also be started manually to check the RSS-Feed from the website &channel_url;. For this, only the button on the start page must be pressed.</string>
     <string name="noUpdate">There are no updates on &channel_url;</string>
     <string name="version">version: %1$s</string>
     <string name="ask">check RSS-Feed</string>
