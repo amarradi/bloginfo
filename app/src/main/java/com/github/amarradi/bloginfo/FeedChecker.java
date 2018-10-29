@@ -12,7 +12,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
@@ -63,7 +62,6 @@ public class FeedChecker implements Runnable {
         }
     }
 
-
     private String readFeedContent() {
         InputStream in = null;
         try {
@@ -89,12 +87,12 @@ public class FeedChecker implements Runnable {
 
         @SuppressLint("ResourceAsColor")
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.context, MainActivity.CHANNEL_ID)
-                .setSmallIcon(R.drawable.blogaler2t_transparent)
+                .setSmallIcon(R.drawable.timmy_turtle_logo_transparent)
                 .setContentTitle(textTitle)
                 .setContentText(textContent)
               //  .setDefaults(DEFAULT_LIGHTS)
                 .setVibrate(new long[]{250,250,250})
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.turtle_timmy_round))
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.timmy_turtle_logo_transparent))
                 .setColorized(true)
                 .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))
                 .setLights(R.color.colorPrimaryLight, 1000, 1000)
@@ -105,7 +103,6 @@ public class FeedChecker implements Runnable {
         if (notificationManager != null) {
             notificationManager.notify(0, mBuilder.build());
         }
-        Log.i("Notification", "notify user");
     }
 
     private String getLastFeedContent() {

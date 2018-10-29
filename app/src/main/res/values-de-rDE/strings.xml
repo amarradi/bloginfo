@@ -16,7 +16,7 @@
     <string name="tv_howitworksdescription">Die &appname;-App prüft morgens um 07:00Uhr ob der RSS-Feed der Internetseite &channel_url; aktualisiert wurde. Wenn die Webseite aktualisiert wurde, wird eine Benachrichtigung angezeigt. Durch das klicken auf diese Benachrichtigung kann direkt die Internetseite &channel_url; aufgerufen werden.</string>
     <string name="thankyou">Danke</string>
     <string name="thankyougod">Danke Herr Jesus das Du für mich am Kreuz gestorben und auferstanden bist.</string>
-    <string name="bibleverse">Denn so hat Gott der Welt seine Liebe gezeigt: Er gab seinen einzigen Sohn, damit jeder, der an ihn glaubt, nicht ins Verderben geht, sondern ewiges Leben hat. Johannesevangelium 3,16 NeÜ </string>
+    <string name="bibleverse">Denn so hat Gott der Welt seine Liebe gezeigt: Er gab seinen einzigen Sohn, damit jeder, der an ihn glaubt, nicht ins Verderben geht, sondern ewiges Leben hat. Johannesevangelium 3,16</string>
     <string name="thankyou_sr">Danke sea für deine Hilfe bei der Entwicklung der App.</string>
     <string name="thankyou_sd">Danke timmy für das Design des Schildkröten-Logos.</string>
     <string name="channel_description">marcusradisch.de</string>

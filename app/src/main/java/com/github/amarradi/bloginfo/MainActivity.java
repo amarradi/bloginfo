@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         }
-        Objects.requireNonNull(getSupportActionBar()).setLogo(R.mipmap.turtle_timmy_round);
+        Objects.requireNonNull(getSupportActionBar()).setLogo(R.mipmap.timmy_turtle_logo_transparent);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

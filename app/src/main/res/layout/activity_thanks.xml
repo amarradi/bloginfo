@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical">
 
 
@@ -26,7 +27,7 @@
         android:id="@+id/thankyoujesus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/thankyougod"
@@ -75,11 +76,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="206dp"
+            android:layout_height="158dp"
             android:layout_margin="10dp"
             android:contentDescription="@string/image"
-            android:src="@drawable/blogaler2t_transparent" />
+            android:src="@drawable/timmy_turtle_logo_transparent" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
