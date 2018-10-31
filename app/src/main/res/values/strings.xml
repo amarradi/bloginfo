@@ -18,7 +18,9 @@
     <string name="about_title">The &appname; Project</string>
     <string name="about_info">The &appname; Project is a project created to inform my friend\'s when i published a new blogpost on &channel_url;</string>
     <string name="tv_howitworks">how &appname; works</string>
-    <string name="tv_howitworksdescription">The &appname;-App checks in the morning at 07:00 o\'clock if the RSS-Feed of the website &channel_url; has been updated. If the web page has been updated, a notification will be displayed. By clicking on the notification the website &channel_url; can be visit.</string>
+    <string name="tv_howitworksdescription">The &appname;-App checks in the morning at 07:00 o\'clock if the RSS-Feed of the website &channel_url;
+        has been updated. If the web page has been updated, a notification will be displayed. By clicking on the notification the website &channel_url;
+        will be visit.</string>
     <string name="thankyou">Thanks</string>
     <string name="thankyougod">Thank you Jesus that you died for me on the cross and rose again.</string>
     <string name="bibleverse">For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. John 3:16</string>
