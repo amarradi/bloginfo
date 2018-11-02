@@ -32,6 +32,4 @@ public class ThanksActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }
