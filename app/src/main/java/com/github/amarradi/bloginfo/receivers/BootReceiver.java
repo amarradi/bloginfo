@@ -70,11 +70,11 @@ public class BootReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = createPendingIntent(context);
 
         Preferences prefs = Preferences.getInstance(context);
-        Time nextNofificationTime = prefs.getNotificationTime();
+        Time nextNotificationTime = prefs.getNotificationTime();
 
         Calendar defaultNoteAt = Calendar.getInstance();
-        defaultNoteAt.set(Calendar.HOUR_OF_DAY, nextNofificationTime.getHours());
-        defaultNoteAt.set(Calendar.MINUTE, nextNofificationTime.getMinutes());
+        defaultNoteAt.set(Calendar.HOUR_OF_DAY, nextNotificationTime.getHours());
+        defaultNoteAt.set(Calendar.MINUTE, nextNotificationTime.getMinutes());
         defaultNoteAt.set(Calendar.SECOND, defaultNoteAt.getActualMinimum(Calendar.SECOND));
         defaultNoteAt.set(Calendar.MILLISECOND, defaultNoteAt.getActualMinimum(Calendar.MILLISECOND));
 
@@ -85,7 +85,7 @@ public class BootReceiver extends BroadcastReceiver {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String formattedDate = df.format(defaultNoteAt.getTime());
-        Log.i("Alarm", "Setting alarm at in BootReceiver" + formattedDate);
+        Log.i("Alarm", "Setting alarm at in BootReceiver " + formattedDate);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, defaultNoteAt.getTimeInMillis(),pendingIntent);
 

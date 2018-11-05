@@ -13,7 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.github.amarradi.bloginfo.receivers.BlogInfoBroadcastReceiver;
+
+import com.github.amarradi.bloginfo.receivers.BootReceiver;
 
 import java.util.Objects;
 
@@ -21,7 +22,7 @@ import static java.util.Objects.requireNonNull;
 
 public class MainActivity extends AppCompatActivity {
 //BlogInfoBroadcastReceiverdeklaration
-    BlogInfoBroadcastReceiver blogInfoBroadcastReceiver;
+    BootReceiver bootReceiver;
 
     public static final String CHANNEL_ID = MainActivity.class.getName();
 
@@ -57,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    // blogInfoBroadcastReceiver instanz beim Starten
-        blogInfoBroadcastReceiver = new BlogInfoBroadcastReceiver();
+
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         }
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bootReceiver.start(getApplicationContext());
                 FeedChecker checker = new FeedChecker(getApplicationContext(), true);
                 checker.check();
             }

@@ -16,7 +16,6 @@
             android:layout_height="235dp"
             android:layout_margin="10dp"
             android:accessibilityHeading="false"
-
             android:contentDescription="@string/image"
             android:src="@drawable/timmy_turtle_logo_transparent" />
 
