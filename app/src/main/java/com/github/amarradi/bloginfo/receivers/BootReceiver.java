@@ -18,21 +18,35 @@ package com.github.amarradi.bloginfo.receivers;
  */
 
 
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.github.amarradi.bloginfo.FeedChecker;
-import com.github.amarradi.bloginfo.helpers.AlarmHelper;
 
+import com.github.amarradi.bloginfo.helpers.AlarmHelper;
+import com.github.amarradi.bloginfo.helpers.Preferences;
+
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Objects;
+
 
 public class BootReceiver extends BroadcastReceiver {
 
+    private static final String TIMED = "timed";
     private final AlarmHelper alarm = new AlarmHelper();
+    private static final String UPDATE_TIME = "updateTime";
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -48,5 +62,40 @@ public class BootReceiver extends BroadcastReceiver {
                 new FeedChecker(context, false).check();
             }
         }
+        start(context);
+    }
+
+    public static void start(Context context) {
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingIntent = createPendingIntent(context);
+
+        Preferences prefs = Preferences.getInstance(context);
+        Time nextNofificationTime = prefs.getNotificationTime();
+
+        Calendar defaultNoteAt = Calendar.getInstance();
+        defaultNoteAt.set(Calendar.HOUR_OF_DAY, nextNofificationTime.getHours());
+        defaultNoteAt.set(Calendar.MINUTE, nextNofificationTime.getMinutes());
+        defaultNoteAt.set(Calendar.SECOND, defaultNoteAt.getActualMinimum(Calendar.SECOND));
+        defaultNoteAt.set(Calendar.MILLISECOND, defaultNoteAt.getActualMinimum(Calendar.MILLISECOND));
+
+        if (defaultNoteAt.before(Calendar.getInstance())) {
+            defaultNoteAt.add(Calendar.DAY_OF_MONTH,1);
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = df.format(defaultNoteAt.getTime());
+        Log.i("Alarm", "Setting alarm at in BootReceiver" + formattedDate);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, defaultNoteAt.getTimeInMillis(),pendingIntent);
+
+    }
+
+    private static PendingIntent createPendingIntent(Context context) {
+        Intent intent = new Intent(context, BootReceiver.class);
+        intent.putExtra(TIMED, true);
+
+        return PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
     }
 }
