@@ -12,6 +12,7 @@ import android.util.Log;
 import com.github.amarradi.bloginfo.MainActivity;
 import com.github.amarradi.bloginfo.receivers.BootReceiver;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -23,16 +24,20 @@ public class AlarmHelper {
     public final static String ACTION_BLOG_NOTIFICATION = "com.github.amarradi.blogalert.NOTIFICATION";
 
     public void setAlarm (Context context, long setNoteAt) {
-        Calendar defaultNoteAt = Calendar.getInstance();
 
+        Preferences prefs = Preferences.getInstance(context);
+        Time nextNotificationTime = prefs.getNotificationTime();
+
+        Calendar defaultNoteAt = Calendar.getInstance();
         if (setNoteAt == 0) {
-            defaultNoteAt.set(Calendar.HOUR_OF_DAY, MainActivity.DEFAULT_ALARM_TIME);
-            defaultNoteAt.set(Calendar.MINUTE, 0);
-            defaultNoteAt.set(Calendar.SECOND, 0);
-            defaultNoteAt.add(Calendar.SECOND, 0);
+            defaultNoteAt.set(Calendar.HOUR_OF_DAY, nextNotificationTime.getHours());
+            defaultNoteAt.set(Calendar.MINUTE, nextNotificationTime.getMinutes());
+            defaultNoteAt.set(Calendar.SECOND, nextNotificationTime.getSeconds());
+            defaultNoteAt.set(Calendar.MILLISECOND, 0);
         } else {
             Calendar now = Calendar.getInstance();
             defaultNoteAt.setTimeInMillis(setNoteAt);
+
             defaultNoteAt.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH));
         }
 
@@ -48,10 +53,7 @@ public class AlarmHelper {
         Intent alarmIntent = new Intent(context, BootReceiver.class);
         alarmIntent.setAction(ACTION_BLOG_NOTIFICATION);
 
-        PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,
-                0,
-                alarmIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,0,alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         /* Repeat it every 24 hours from the configured time */
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,

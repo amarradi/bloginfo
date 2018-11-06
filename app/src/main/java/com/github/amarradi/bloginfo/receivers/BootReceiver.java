@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 
+import android.os.Build.VERSION;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -44,13 +45,13 @@ import java.util.Objects;
 public class BootReceiver extends BroadcastReceiver {
 
     private static final String TIMED = "timed";
+
     private final AlarmHelper alarm = new AlarmHelper();
-    private static final String UPDATE_TIME = "updateTime";
-    private SharedPreferences sharedPreferences;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        //start(context);
+        if (Build.VERSION_CODES.KITKAT <= VERSION.SDK_INT) {
             if (Objects.requireNonNull(intent.getAction()).equals("android.intent.action.BOOT_COMPLETED")) {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                 long toRingAt = prefs.getLong("scan_daily_interval", 0);
@@ -58,11 +59,12 @@ public class BootReceiver extends BroadcastReceiver {
                 alarm.setAlarm(context, toRingAt);
             }
 
+
             if (AlarmHelper.ACTION_BLOG_NOTIFICATION.equals(intent.getAction())) {
                 new FeedChecker(context, false).check();
             }
         }
-        start(context);
+
     }
 
     public static void start(Context context) {
@@ -73,6 +75,7 @@ public class BootReceiver extends BroadcastReceiver {
         Time nextNotificationTime = prefs.getNotificationTime();
 
         Calendar defaultNoteAt = Calendar.getInstance();
+
         defaultNoteAt.set(Calendar.HOUR_OF_DAY, nextNotificationTime.getHours());
         defaultNoteAt.set(Calendar.MINUTE, nextNotificationTime.getMinutes());
         defaultNoteAt.set(Calendar.SECOND, defaultNoteAt.getActualMinimum(Calendar.SECOND));
@@ -87,7 +90,7 @@ public class BootReceiver extends BroadcastReceiver {
         String formattedDate = df.format(defaultNoteAt.getTime());
         Log.i("Alarm", "Setting alarm at in BootReceiver " + formattedDate);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, defaultNoteAt.getTimeInMillis(),pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, defaultNoteAt.getTimeInMillis(), pendingIntent);
 
     }
 

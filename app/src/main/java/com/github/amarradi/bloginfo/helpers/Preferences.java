@@ -10,7 +10,7 @@ import java.sql.Time;
 public class Preferences {
 
     // preference key constants
-    private static final String UPDATE_TIME = "updateTime";
+    private static final String NOTIFICATION_TIME = "notificationTime";
 
     private static Preferences instance = null;
 
@@ -28,7 +28,7 @@ public class Preferences {
     }
 
     public Time getNotificationTime() {
-        return Time.valueOf(this.sharedPreferences.getString(UPDATE_TIME, "07:00") + ":00");
+        return Time.valueOf(this.sharedPreferences.getString(NOTIFICATION_TIME, "22:52") + ":00");
     }
 
 

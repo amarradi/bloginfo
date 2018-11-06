@@ -28,12 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_ALARM_TIME = 7;
 
-    public static String FEED_URL = "http://www.marcusradisch.de/feed/";
-    public static String WEB_URL = "http://www.marcusradisch.de";
+    //public static String FEED_URL = "http://www.marcusradisch.de/feed/";
+    //public static String WEB_URL = "http://www.marcusradisch.de";
+    public static String FEED_URL = "https://rss.golem.de/rss.php?tp=dev&feed=RSS2.0";
+    public static String WEB_URL = "https://www.golem.de";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
@@ -58,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
+        BootReceiver.start(getApplicationContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         }
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bootReceiver.start(getApplicationContext());
                 FeedChecker checker = new FeedChecker(getApplicationContext(), true);
                 checker.check();
             }
