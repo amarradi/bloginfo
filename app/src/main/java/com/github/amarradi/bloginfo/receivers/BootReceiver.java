@@ -50,7 +50,6 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        //start(context);
         if (Build.VERSION_CODES.KITKAT <= VERSION.SDK_INT) {
             if (Objects.requireNonNull(intent.getAction()).equals("android.intent.action.BOOT_COMPLETED")) {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
