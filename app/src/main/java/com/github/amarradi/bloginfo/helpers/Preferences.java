@@ -28,7 +28,7 @@ public class Preferences {
     }
 
     public Time getNotificationTime() {
-        return Time.valueOf(this.sharedPreferences.getString(NOTIFICATION_TIME, "23:00") + ":00");
+        return Time.valueOf(this.sharedPreferences.getString(NOTIFICATION_TIME, "22:50") + ":00");
     }
 
 

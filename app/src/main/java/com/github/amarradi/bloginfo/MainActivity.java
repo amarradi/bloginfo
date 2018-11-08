@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         BootReceiver.start(getApplicationContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);

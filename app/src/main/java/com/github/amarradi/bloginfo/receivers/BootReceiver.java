@@ -30,9 +30,11 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.github.amarradi.bloginfo.FeedChecker;
 
+import com.github.amarradi.bloginfo.R;
 import com.github.amarradi.bloginfo.helpers.AlarmHelper;
 import com.github.amarradi.bloginfo.helpers.Preferences;
 
@@ -47,15 +49,28 @@ public class BootReceiver extends BroadcastReceiver {
     private static final String TIMED = "timed";
 
     private final AlarmHelper alarm = new AlarmHelper();
-
+/*
+NullPointerException weil kein Reboot erkannt wurde.... ->
+ */
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Build.VERSION_CODES.KITKAT <= VERSION.SDK_INT) {
-            if (Objects.requireNonNull(intent.getAction()).equals("android.intent.action.BOOT_COMPLETED")) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-                long toRingAt = prefs.getLong("scan_daily_interval", 0);
-                alarm.cancelAlarm(context);
-                alarm.setAlarm(context, toRingAt);
+//Wenn das Objekt null ist, weil kein Neustart erkannt wurde, dann muss das abgefangen werden
+            if (VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                if((Objects.isNull(intent.getAction()))) {
+                    //Toast dient nur zum Testen
+                    Toast toast = Toast.makeText(context, R.string.objisnull, Toast.LENGTH_SHORT);
+                    toast.show();
+                    new FeedChecker(context, false).check();
+                } else {
+//Ende
+                    if (Objects.requireNonNull(intent.getAction()).equals("android.intent.action.BOOT_COMPLETED")) {
+                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                        long toRingAt = prefs.getLong("scan_daily_interval", 0);
+                        alarm.cancelAlarm(context);
+                        alarm.setAlarm(context, toRingAt);
+                    }
+                }
             }
 
 

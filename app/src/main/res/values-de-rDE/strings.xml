@@ -29,4 +29,5 @@
     <string name="version">Version: %1$s</string>
     <string name="ask">RSS-Feed prüfen</string>
     <string name="my_url">Meinen Blog ist hier <a href="www.marcusradisch.de">www.marcusradisch.de</a> zu finden.</string>
+    <string name="objisnull">Object is null</string>
 </resources>

@@ -44,7 +44,7 @@ public class AlarmHelper {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String formattedDate = df.format(defaultNoteAt.getTime());
-        Log.i("Alarm", "Setting alarm at Receiver in AlarmHelper" + formattedDate);
+        Log.i("Alarm", "Setting alarm at Receiver in AlarmHelper " + formattedDate);
 
         setNoteAt = defaultNoteAt.getTimeInMillis();
 
