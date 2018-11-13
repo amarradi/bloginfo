@@ -21,17 +21,13 @@ import java.util.Objects;
 import static java.util.Objects.requireNonNull;
 
 public class MainActivity extends AppCompatActivity {
-//BlogInfoBroadcastReceiverdeklaration
-    BootReceiver bootReceiver;
 
     public static final String CHANNEL_ID = MainActivity.class.getName();
 
-    public static final int DEFAULT_ALARM_TIME = 7;
-
-    //public static String FEED_URL = "http://www.marcusradisch.de/feed/";
-    //public static String WEB_URL = "http://www.marcusradisch.de";
-    public static String FEED_URL = "https://rss.golem.de/rss.php?tp=dev&feed=RSS2.0";
-    public static String WEB_URL = "https://www.golem.de";
+    public static String FEED_URL = "http://www.marcusradisch.de/feed/";
+    public static String WEB_URL = "http://www.marcusradisch.de";
+    //public static String FEED_URL = "https://rss.golem.de/rss.php?tp=dev&feed=RSS2.0";
+    //public static String WEB_URL = "https://www.golem.de";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
