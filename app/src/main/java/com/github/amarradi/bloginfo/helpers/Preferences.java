@@ -1,6 +1,5 @@
 package com.github.amarradi.bloginfo.helpers;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;

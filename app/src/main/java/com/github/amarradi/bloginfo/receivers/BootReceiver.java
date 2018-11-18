@@ -54,8 +54,6 @@ public class BootReceiver extends BroadcastReceiver {
         if (Build.VERSION_CODES.KITKAT <= VERSION.SDK_INT) {
             if (VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 if((Objects.isNull(intent.getAction()))) {
-                    //Toast toast = Toast.makeText(context, R.string.objisnull, Toast.LENGTH_SHORT);
-                    //toast.show();
                     new FeedChecker(context, false).check();
                 } else {
                     if (Objects.requireNonNull(intent.getAction()).equals("android.intent.action.BOOT_COMPLETED")) {

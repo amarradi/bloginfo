@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static String FEED_URL = "http://www.marcusradisch.de/feed/";
     public static String WEB_URL = "http://www.marcusradisch.de";
-    //public static String FEED_URL = "https://rss.golem.de/rss.php?tp=dev&feed=RSS2.0";
-    //public static String WEB_URL = "https://www.golem.de";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
