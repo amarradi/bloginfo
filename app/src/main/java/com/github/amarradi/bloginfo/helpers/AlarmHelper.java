@@ -29,7 +29,7 @@ public class AlarmHelper {
             defaultNoteAt.set(Calendar.HOUR_OF_DAY, MainActivity.DEFAULT_ALARM_TIME);
             defaultNoteAt.set(Calendar.MINUTE, 0);
             defaultNoteAt.set(Calendar.SECOND, 0);
-            defaultNoteAt.set(Calendar.SECOND, 0);
+            defaultNoteAt.add(Calendar.SECOND, 0);
         } else {
             Calendar now = Calendar.getInstance();
             defaultNoteAt.setTimeInMillis(setNoteAt);

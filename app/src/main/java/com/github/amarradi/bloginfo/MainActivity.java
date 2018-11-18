@@ -23,11 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_ALARM_TIME = 7;
 
-    public static String FEED_URL = "https://rss.golem.de/rss.php?feed=RSS2.0";
-    public static String WEB_URL = "https://www.golem.de";
-
-//    public static String FEED_URL = "http://www.marcusradisch.de/feed/";
-//    public static String WEB_URL = "http://www.marcusradisch.de";
+    public static String FEED_URL = "http://www.marcusradisch.de/feed/";
+    public static String WEB_URL = "http://www.marcusradisch.de";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

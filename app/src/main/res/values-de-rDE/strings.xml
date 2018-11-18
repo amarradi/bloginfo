@@ -25,8 +25,9 @@
     <string name="channel_name">Marcus Radisch</string>
     <string name="tv_AppStartManual">&appname; kann auch manuell gestartet werden, um den RSS-Feed der Internetseite &channel_url;
         zu prüfen. Dafür muss nur der Button auf der Startseite gedrückt werden.</string>
-    <string name="noUpdate">Es gibt keinen neuen Beitrag auf &channel_url;</string>
+    <string name="noUpdate">Es gibt keinen neuen Beitrag</string>
     <string name="version">Version: %1$s</string>
     <string name="ask">RSS-Feed prüfen</string>
     <string name="my_url">Meinen Blog ist hier <a href="www.marcusradisch.de">www.marcusradisch.de</a> zu finden.</string>
+    <string name="objisnull">Object is null</string>
 </resources>
