@@ -13,11 +13,14 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
+import android.util.Log;
 
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
 import java.net.URL;
+
+import javax.xml.transform.Source;
 
 public class FeedChecker implements Runnable {
 
@@ -26,6 +29,8 @@ public class FeedChecker implements Runnable {
 
     private final Context context;
     private final boolean showToast;
+    private static final String TAG = "data_content";
+
 
     public FeedChecker(Context context, boolean showToast) {
 
@@ -66,6 +71,7 @@ public class FeedChecker implements Runnable {
         InputStream in = null;
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
+            Log.i(TAG, IOUtils.toString(in, "utf-8"));
             return IOUtils.toString(in, "utf-8").trim();
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,7 +104,7 @@ public class FeedChecker implements Runnable {
                 .setLights(R.color.colorPrimaryLight, 1000, 1000)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
+                .setAutoCancel(false);
 
         if (notificationManager != null) {
             notificationManager.notify(0, mBuilder.build());
@@ -106,8 +112,16 @@ public class FeedChecker implements Runnable {
     }
 
     private String getLastFeedContent() {
+        String prefers;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
-        return preferences.getString(LAST_FEED_CONTENT_STORAGE_KEY, "").trim();
+        prefers = preferences.getString(LAST_FEED_CONTENT_STORAGE_KEY, "");
+        //Warning:(116, 73) Method invocation 'trim' may produce 'java.lang.NullPointerException'...
+        if (prefers.length() == 0) {
+            return prefers;
+        } else {
+            prefers = prefers.trim();
+        }
+        return prefers;
     }
 
     private void setLastFeedContent(String feedContent) {
