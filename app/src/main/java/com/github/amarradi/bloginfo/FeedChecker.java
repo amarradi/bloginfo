@@ -15,10 +15,17 @@ import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 import android.util.Log;
 
-import org.apache.commons.io.IOUtils;
+import com.github.amarradi.bloginfo.receivers.Channel;
 
+import org.apache.commons.io.IOUtils;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.xml.transform.Source;
 
@@ -71,7 +78,8 @@ public class FeedChecker implements Runnable {
         InputStream in = null;
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
-            Log.i(TAG, IOUtils.toString(in, "utf-8"));
+            // Log.i(TAG, IOUtils.toString(in, "utf-8"));
+            parseXML();
             return IOUtils.toString(in, "utf-8").trim();
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,6 +88,57 @@ public class FeedChecker implements Runnable {
         }
         return null;
     }
+
+    private void parseXML() {
+        XmlPullParserFactory parserFactory;
+        try {
+            parserFactory = XmlPullParserFactory.newInstance();
+            XmlPullParser parser = parserFactory.newPullParser();
+            InputStream is = context.getAssets().open("feed.xml");
+
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(is, null);
+
+            processParsing(parser);
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void processParsing(XmlPullParser parser) throws XmlPullParserException, IOException {
+        ArrayList <Channel> channels = new ArrayList <>();
+        int eventType = parser.getEventType();
+        Channel currentChannel = null;
+
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            String eltName = null;
+            switch (eventType) {
+                case XmlPullParser.START_TAG:
+                    eltName = parser.getName();
+
+                    if ("channel".equals(eltName)) {
+                        currentChannel = new Channel();
+                        channels.add(currentChannel);
+                    } else if (currentChannel != null) {
+                        if ("lastBuildDate".equals(eltName)) {
+                            currentChannel.lastBuildDate = parser.nextText();
+                        }
+                    }
+                    break;
+            }
+            eventType = parser.next();
+        }
+        StringBuilder builder = new StringBuilder();
+        for (Channel channel : channels) {
+            builder.append(channel.lastBuildDate);
+        }
+        Log.i(TAG, builder.toString());
+    }
+
+
 
     private void notifyUser() {
         String textTitle = this.context.getString(R.string.notificationTitle);
