@@ -12,8 +12,8 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
-import android.widget.Toast;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.github.amarradi.bloginfo.receivers.Channel;
 
@@ -26,8 +26,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-
-import javax.xml.transform.Source;
 
 public class FeedChecker implements Runnable {
 
@@ -92,6 +90,7 @@ public class FeedChecker implements Runnable {
     private void parseXML() {
         XmlPullParserFactory parserFactory;
         try {
+
             parserFactory = XmlPullParserFactory.newInstance();
             XmlPullParser parser = parserFactory.newPullParser();
             InputStream is = context.getAssets().open("feed.xml");
