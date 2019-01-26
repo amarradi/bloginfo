@@ -3,7 +3,6 @@ package com.github.amarradi.bloginfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class FeedCheckerTest {
 
 	@Test
 	public void parseLastBuildDate() throws IOException {
-		InputStream is = RuntimeEnvironment.application.getAssets().open("feed.xml");
+		InputStream is = getClass().getResourceAsStream("/feed.xml");
 
 		String lastBuildDate = new FeedReader().parseLastBuildDate(is);
 
