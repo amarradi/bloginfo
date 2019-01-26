@@ -34,12 +34,11 @@ public class FeedChecker implements Runnable {
 
     private final Context context;
     private final boolean showToast;
-    private static final String TAG = "data_content";
+
+    private FeedReader feedReader = new FeedReader();
 
 
     public FeedChecker(Context context, boolean showToast) {
-
-
         this.context = context;
         this.showToast = showToast;
     }
@@ -77,7 +76,7 @@ public class FeedChecker implements Runnable {
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
             // Log.i(TAG, IOUtils.toString(in, "utf-8"));
-            parseXML();
+            String lastBuildDate = this.feedReader.parseLastBuildDate(in);
             return IOUtils.toString(in, "utf-8").trim();
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,57 +85,6 @@ public class FeedChecker implements Runnable {
         }
         return null;
     }
-
-    private void parseXML() {
-        XmlPullParserFactory parserFactory;
-        try {
-
-            parserFactory = XmlPullParserFactory.newInstance();
-            XmlPullParser parser = parserFactory.newPullParser();
-            InputStream is = context.getAssets().open("feed.xml");
-
-            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            parser.setInput(is, null);
-
-            processParsing(parser);
-
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void processParsing(XmlPullParser parser) throws XmlPullParserException, IOException {
-        ArrayList <Channel> channels = new ArrayList <>();
-        int eventType = parser.getEventType();
-        Channel currentChannel = null;
-
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            String eltName = null;
-            switch (eventType) {
-                case XmlPullParser.START_TAG:
-                    eltName = parser.getName();
-
-                    if ("channel".equals(eltName)) {
-                        currentChannel = new Channel();
-                        channels.add(currentChannel);
-                    } else if (currentChannel != null) {
-                        if ("lastBuildDate".equals(eltName)) {
-                            currentChannel.lastBuildDate = parser.nextText();
-                        }
-                    }
-                    break;
-            }
-            eventType = parser.next();
-        }
-        StringBuilder builder = new StringBuilder();
-        for (Channel channel : channels) {
-            builder.append(channel.lastBuildDate);
-        }
-        Log.i(TAG, builder.toString());
-    }
-
 
 
     private void notifyUser() {
