@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
@@ -21,7 +22,7 @@ import java.net.URL;
 
 public class FeedChecker implements Runnable {
 
-    private static final String LAST_FEED_CONTENT_STORAGE_KEY = "LAST_FEED_CONTENT_STORAGE_KEY";
+    private static final String LAST_FEED_CONTENT = "LAST_FEED_CONTENT";
 
 
     private final Context context;
@@ -43,9 +44,11 @@ public class FeedChecker implements Runnable {
     public void run() {
 
         String currentFeedContent = readFeedContent();
+
         if (currentFeedContent != null) {
 
             String lastFeedContent = getLastFeedContent();
+            // Log.i(LAST_FEED_CONTENT,lastFeedContent);
             if (!currentFeedContent.equals(lastFeedContent)) {
                 notifyUser();
             } else if (this.showToast) {
@@ -67,9 +70,10 @@ public class FeedChecker implements Runnable {
         InputStream in = null;
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
-            // Log.i(TAG, IOUtils.toString(in, "utf-8"));
             String lastBuildDate = this.feedReader.parseLastBuildDate(in);
-            return IOUtils.toString(in, "utf-8").trim();
+            // Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
+            // return IOUtils.toString(in, "utf-8").trim();
+            return lastBuildDate;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -112,8 +116,8 @@ public class FeedChecker implements Runnable {
     private String getLastFeedContent() {
         String prefers;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
-        prefers = preferences.getString(LAST_FEED_CONTENT_STORAGE_KEY, "");
-        //Warning:(116, 73) Method invocation 'trim' may produce 'java.lang.NullPointerException'...
+        prefers = preferences.getString(LAST_FEED_CONTENT, "");
+
         if (prefers.length() == 0) {
             return prefers;
         } else {
@@ -124,6 +128,6 @@ public class FeedChecker implements Runnable {
 
     private void setLastFeedContent(String feedContent) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
-        preferences.edit().putString(LAST_FEED_CONTENT_STORAGE_KEY, feedContent).apply();
+        preferences.edit().putString(LAST_FEED_CONTENT, feedContent).apply();
     }
 }
