@@ -48,7 +48,7 @@ public class FeedChecker implements Runnable {
         if (currentFeedContent != null) {
 
             String lastFeedContent = getLastFeedContent();
-            // Log.i(LAST_FEED_CONTENT,lastFeedContent);
+            Log.i(LAST_FEED_CONTENT, lastFeedContent);
             if (!currentFeedContent.equals(lastFeedContent)) {
                 notifyUser();
             } else if (this.showToast) {
