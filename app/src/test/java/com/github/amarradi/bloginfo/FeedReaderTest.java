@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 @Config(manifest = "src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
-public class FeedCheckerTest {
+public class FeedReaderTest {
 
 	@Test
 	public void parseLastBuildDate() throws IOException {
