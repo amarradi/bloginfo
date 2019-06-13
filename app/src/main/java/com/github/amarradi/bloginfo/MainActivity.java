@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_ALARM_TIME = 7;
 
- /*   public static String FEED_URL = "http://www.marcusradisch.de/feed/";
-    public static String WEB_URL = "http://www.marcusradisch.de";*/
+    //public static String FEED_URL = "http://www.marcusradisch.de/feed/";
+    //public static String WEB_URL = "http://www.marcusradisch.de";
 
     public static String FEED_URL = "https://www.heise.de/rss/heise.rdf";
     public static String WEB_URL = "https://www.heise.de";
@@ -57,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //showStartDialog();
+
         BootReceiver.start(getApplicationContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
@@ -80,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+   /* private void showStartDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle()
+    }*/
+
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -87,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            //int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
 

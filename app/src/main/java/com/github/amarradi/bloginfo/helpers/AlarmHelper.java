@@ -47,15 +47,12 @@ public class AlarmHelper {
         Intent alarmIntent = new Intent(context, BootReceiver.class);
         alarmIntent.setAction(ACTION_BLOG_NOTIFICATION);
 
-        PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,
-                0,
-                alarmIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,0,alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         /* Repeat it every 24 hours from the configured time */
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
                 setNoteAt,
-                INTERVAL_DAY,
+                AlarmManager.INTERVAL_DAY,
                 pendingAlarmIntent);
 
         /* Restart if rebooted */

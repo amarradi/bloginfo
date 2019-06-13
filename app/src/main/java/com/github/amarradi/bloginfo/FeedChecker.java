@@ -1,6 +1,7 @@
 package com.github.amarradi.bloginfo;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -23,6 +24,8 @@ import java.net.URL;
 public class FeedChecker implements Runnable {
 
     private static final String LAST_FEED_CONTENT = "LAST_FEED_CONTENT";
+    private static final String CURRENT_FEED_CONTENT = "CURRENT_FEED_CONTENT";
+    private static final String PREFS = "PREFS";
 
 
     private final Context context;
@@ -44,6 +47,7 @@ public class FeedChecker implements Runnable {
     public void run() {
 
         String currentFeedContent = readFeedContent();
+        Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
 
         if (currentFeedContent != null) {
 
@@ -71,7 +75,7 @@ public class FeedChecker implements Runnable {
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
             String lastBuildDate = this.feedReader.parseLastBuildDate(in);
-            // Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
+            Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
             // return IOUtils.toString(in, "utf-8").trim();
             return lastBuildDate;
         } catch (Exception e) {
@@ -105,6 +109,7 @@ public class FeedChecker implements Runnable {
                 .setColor(ContextCompat.getColor(this.context, R.color.colorPrimaryDark))
                 .setLights(R.color.colorPrimaryLight, 1000, 1000)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setCategory(Notification.CATEGORY_REMINDER)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(false);
 
@@ -117,8 +122,8 @@ public class FeedChecker implements Runnable {
         String prefers;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
         prefers = preferences.getString(LAST_FEED_CONTENT, "");
-
-        if (prefers.length() == 0) {
+        Log.i(PREFS,prefers);
+        if (prefers.isEmpty()) {
             return prefers;
         } else {
             prefers = prefers.trim();
@@ -129,5 +134,6 @@ public class FeedChecker implements Runnable {
     private void setLastFeedContent(String feedContent) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
         preferences.edit().putString(LAST_FEED_CONTENT, feedContent).apply();
+        Log.i(PREFS,preferences.toString());
     }
 }

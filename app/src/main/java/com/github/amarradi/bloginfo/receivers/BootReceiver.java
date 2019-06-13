@@ -26,15 +26,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-
 import android.os.Build.VERSION;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.github.amarradi.bloginfo.FeedChecker;
-
-import com.github.amarradi.bloginfo.R;
 import com.github.amarradi.bloginfo.helpers.AlarmHelper;
 import com.github.amarradi.bloginfo.helpers.Preferences;
 
@@ -76,6 +72,7 @@ public class BootReceiver extends BroadcastReceiver {
 
         Preferences prefs = Preferences.getInstance(context);
         Time nextNotificationTime = prefs.getNotificationTime();
+        Log.i("noteTime","noteTime: "+nextNotificationTime.toString());
 
         Calendar defaultNoteAt = Calendar.getInstance();
 
@@ -83,6 +80,8 @@ public class BootReceiver extends BroadcastReceiver {
         defaultNoteAt.set(Calendar.MINUTE, nextNotificationTime.getMinutes());
         defaultNoteAt.set(Calendar.SECOND, defaultNoteAt.getActualMinimum(Calendar.SECOND));
         defaultNoteAt.set(Calendar.MILLISECOND, defaultNoteAt.getActualMinimum(Calendar.MILLISECOND));
+
+        Log.i("defNote","defNote: "+defaultNoteAt.getTime().toString());
 
         if (defaultNoteAt.before(Calendar.getInstance())) {
             defaultNoteAt.add(Calendar.DAY_OF_MONTH,1);

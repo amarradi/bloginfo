@@ -34,7 +34,6 @@ public class FeedReader {
 
 			parser.next();
 		}
-
 		throw new RuntimeException();
 	}
 
