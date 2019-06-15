@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_ALARM_TIME = 7;
 
-    //public static String FEED_URL = "http://www.marcusradisch.de/feed/";
-    //public static String WEB_URL = "http://www.marcusradisch.de";
+    public static String FEED_URL = "https://www.marcusradisch.de/feed";
+    public static String WEB_URL = "https://www.marcusradisch.de";
 
-    public static String FEED_URL = "https://www.heise.de/rss/heise.rdf";
-    public static String WEB_URL = "https://www.heise.de";
+    //public static String FEED_URL = "https://www.heise.de/rss/heise.rdf";
+    //public static String WEB_URL = "https://www.heise.de";
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

@@ -46,7 +46,7 @@ public class FeedChecker implements Runnable {
     @Override
     public void run() {
 
-        String currentFeedContent = readFeedContent();
+        String currentFeedContent = readFeedContent().trim();
         Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
 
         if (currentFeedContent != null) {
@@ -76,7 +76,7 @@ public class FeedChecker implements Runnable {
             in = new URL(MainActivity.FEED_URL).openStream();
             String lastBuildDate = this.feedReader.parseLastBuildDate(in);
             Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
-            // return IOUtils.toString(in, "utf-8").trim();
+            //return IOUtils.toString(in, "utf-8").trim();
             return lastBuildDate;
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,7 +121,7 @@ public class FeedChecker implements Runnable {
     private String getLastFeedContent() {
         String prefers;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
-        prefers = preferences.getString(LAST_FEED_CONTENT, "");
+        prefers = preferences.getString(LAST_FEED_CONTENT, "").trim();
         Log.i(PREFS,prefers);
         if (prefers.isEmpty()) {
             return prefers;
