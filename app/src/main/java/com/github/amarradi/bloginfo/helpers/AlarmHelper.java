@@ -15,8 +15,6 @@ import com.github.amarradi.bloginfo.receivers.BootReceiver;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import static android.app.AlarmManager.INTERVAL_DAY;
-
 public class AlarmHelper {
 
     private AlarmManager alarmManager;
@@ -63,7 +61,6 @@ public class AlarmHelper {
     }
 
     public void cancelAlarm(Context context) {
-        //  Log.i("Alarm", "Cancel the alarm");
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 

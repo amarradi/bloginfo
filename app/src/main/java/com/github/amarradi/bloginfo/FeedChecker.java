@@ -46,7 +46,7 @@ public class FeedChecker implements Runnable {
     @Override
     public void run() {
 
-        String currentFeedContent = readFeedContent().trim();
+        String currentFeedContent = readFeedContent();
         Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
 
         if (currentFeedContent != null) {
@@ -77,7 +77,7 @@ public class FeedChecker implements Runnable {
             String lastBuildDate = this.feedReader.parseLastBuildDate(in);
             Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
             //return IOUtils.toString(in, "utf-8").trim();
-            return lastBuildDate;
+            return lastBuildDate.trim();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

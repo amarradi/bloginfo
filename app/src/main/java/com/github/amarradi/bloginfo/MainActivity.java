@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_ALARM_TIME = 7;
 
-    public static String FEED_URL = "https://www.marcusradisch.de/feed";
-    public static String WEB_URL = "https://www.marcusradisch.de";
-
-    //public static String FEED_URL = "https://www.heise.de/rss/heise.rdf";
-    //public static String WEB_URL = "https://www.heise.de";
+    /* public static String FEED_URL = "https://www.marcusradisch.de/feed";
+     public static String WEB_URL = "https://www.marcusradisch.de";
+ */
+    public static String FEED_URL = "https://www.heise.de/rss/heise.rdf";
+    public static String WEB_URL = "https://www.heise.de";
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -59,12 +58,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //showStartDialog();
-
         BootReceiver.start(getApplicationContext());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-        }
+        requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setLogo(R.mipmap.timmy_turtle_logo_transparent);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         super.onCreate(savedInstanceState);
@@ -83,11 +78,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-   /* private void showStartDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle()
-    }*/
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
