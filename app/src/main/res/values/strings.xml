@@ -7,6 +7,7 @@
 <resources>
     <string name="app_name" translatable="false">BlogInfo</string>
     <string name="channel_name">Marcus Radisch</string>
+    <string name="channel_notification_name">Notify about new Blogpost</string>
     <string name="channel_description">marcusradisch.de</string>
     <string name="notificationTitle">new blogpost</string>
     <string name="settings_time_set">Set</string>
