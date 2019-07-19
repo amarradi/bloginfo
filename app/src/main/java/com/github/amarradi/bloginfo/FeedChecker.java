@@ -24,7 +24,7 @@ import java.net.URL;
 public class FeedChecker implements Runnable {
 
     private static final String LAST_FEED_CONTENT = "LAST_FEED_CONTENT";
-    private static final String CURRENT_FEED_CONTENT = "CURRENT_FEED_CONTENT";
+   //private static final String CURRENT_FEED_CONTENT = "CURRENT_FEED_CONTENT";
     private static final String PREFS = "PREFS";
 
 
@@ -47,7 +47,7 @@ public class FeedChecker implements Runnable {
     public void run() {
 
         String currentFeedContent = readFeedContent();
-        Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
+        //Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
 
         if (currentFeedContent != null) {
 
@@ -75,7 +75,7 @@ public class FeedChecker implements Runnable {
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
             String lastBuildDate = this.feedReader.parseLastBuildDate(in);
-            Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
+        //    Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
             //return IOUtils.toString(in, "utf-8").trim();
             return lastBuildDate.trim();
         } catch (Exception e) {
