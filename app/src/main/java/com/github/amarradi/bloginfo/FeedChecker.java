@@ -24,8 +24,8 @@ import java.net.URL;
 public class FeedChecker implements Runnable {
 
     private static final String LAST_FEED_CONTENT = "LAST_FEED_CONTENT";
-    private static final String CURRENT_FEED_CONTENT = "CURRENT_FEED_CONTENT";
-    private static final String PREFS = "PREFS";
+   // private static final String CURRENT_FEED_CONTENT = "CURRENT_FEED_CONTENT";
+   // private static final String PREFS = "PREFS";
 
 
     private final Context context;
