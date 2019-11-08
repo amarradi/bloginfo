@@ -47,12 +47,12 @@ public class FeedChecker implements Runnable {
     public void run() {
 
         String currentFeedContent = readFeedContent();
-        Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
+    //    Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
 
         if (currentFeedContent != null) {
 
             String lastFeedContent = getLastFeedContent();
-            Log.i(LAST_FEED_CONTENT, lastFeedContent);
+      //      Log.i(LAST_FEED_CONTENT, lastFeedContent);
             if (!currentFeedContent.equals(lastFeedContent)) {
                 notifyUser();
             } else if (this.showToast) {
@@ -75,7 +75,7 @@ public class FeedChecker implements Runnable {
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
             String lastBuildDate = this.feedReader.parseLastBuildDate(in);
-            Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
+        //    Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
             //return IOUtils.toString(in, "utf-8").trim();
             return lastBuildDate.trim();
         } catch (Exception e) {
@@ -122,7 +122,7 @@ public class FeedChecker implements Runnable {
         String prefers;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
         prefers = preferences.getString(LAST_FEED_CONTENT, "").trim();
-        Log.i(PREFS,prefers);
+        ///Log.i(PREFS,prefers);
         if (prefers.isEmpty()) {
             return prefers;
         } else {
@@ -134,6 +134,6 @@ public class FeedChecker implements Runnable {
     private void setLastFeedContent(String feedContent) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
         preferences.edit().putString(LAST_FEED_CONTENT, feedContent).apply();
-        Log.i(PREFS,preferences.toString());
+        //Log.i(PREFS,preferences.toString());
     }
 }

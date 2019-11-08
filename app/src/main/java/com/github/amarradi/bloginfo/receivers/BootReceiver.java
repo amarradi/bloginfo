@@ -72,7 +72,7 @@ public class BootReceiver extends BroadcastReceiver {
 
         Preferences prefs = Preferences.getInstance(context);
         Time nextNotificationTime = prefs.getNotificationTime();
-        Log.i("noteTime","noteTime: "+nextNotificationTime.toString());
+     //   Log.i("noteTime","noteTime: "+nextNotificationTime.toString());
 
         Calendar defaultNoteAt = Calendar.getInstance();
 
@@ -81,7 +81,7 @@ public class BootReceiver extends BroadcastReceiver {
         defaultNoteAt.set(Calendar.SECOND, defaultNoteAt.getActualMinimum(Calendar.SECOND));
         defaultNoteAt.set(Calendar.MILLISECOND, defaultNoteAt.getActualMinimum(Calendar.MILLISECOND));
 
-        Log.i("defNote","defNote: "+defaultNoteAt.getTime().toString());
+       // Log.i("defNote","defNote: "+defaultNoteAt.getTime().toString());
 
         if (defaultNoteAt.before(Calendar.getInstance())) {
             defaultNoteAt.add(Calendar.DAY_OF_MONTH,1);
@@ -90,7 +90,7 @@ public class BootReceiver extends BroadcastReceiver {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String formattedDate = df.format(defaultNoteAt.getTime());
-        Log.i("Alarm", "Setting alarm at in BootReceiver " + formattedDate);
+        //Log.i("Alarm", "Setting alarm at in BootReceiver " + formattedDate);
         alarmManager.set(AlarmManager.RTC_WAKEUP, defaultNoteAt.getTimeInMillis(), pendingIntent);
 
     }
