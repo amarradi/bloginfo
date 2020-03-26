@@ -5,8 +5,8 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_ALARM_TIME = 7;
 
-    public static String FEED_URL = "https://www.marcusradisch.de/feed";
-    public static String WEB_URL = "https://www.marcusradisch.de";
+   /* public static String FEED_URL = "https://www.marcusradisch.de/feed";
+    public static String WEB_URL = "https://www.marcusradisch.de";*/
 
-    /*
+
    public static String FEED_URL = "https://www.heise.de/rss/heise.rdf";
    public static String WEB_URL = "https://www.heise.de";
-   */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
