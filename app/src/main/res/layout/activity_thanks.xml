@@ -40,7 +40,7 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:padding="5dp"
-        android:text="@string/bibleverse"
+        android:text="@string/bibleverse_1"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <View

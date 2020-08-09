@@ -6,7 +6,7 @@
 
 <resources>
     <string name="app_name" translatable="false">BlogInfo</string>
-    <string name="channel_name">Marcus Radisch</string>
+    <string name="channel_name">Blog alert</string>
     <string name="channel_description">marcusradisch.de</string>
     <string name="notificationTitle">new blogpost</string>
     <string name="settings_time_set">Set</string>
@@ -23,7 +23,7 @@
         will be visit.</string>
     <string name="thankyou">Thanks</string>
     <string name="thankyougod">Thank you Jesus that you died for me on the cross and rose again.</string>
-    <string name="bibleverse">For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. John 3:16</string>
+    <string name="bibleverse_1">For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. John 3:16</string>
     <string name="thankyou_sr">Thank you sea for your help in developing the app.</string>
     <string name="thankyou_sd">Thank you timmy for the design of the turtle logo.</string>
     <string name="tv_AppStartManual">&appname;-App can also be started manually to check the RSS-Feed from the website &channel_url;. For this, only the button on the start page must be pressed.</string>
