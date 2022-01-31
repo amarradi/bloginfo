@@ -7,10 +7,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.util.Log;
 
 import com.github.amarradi.bloginfo.MainActivity;
-import com.github.amarradi.bloginfo.receivers.BootReceiver;
+import com.github.amarradi.bloginfo.receivers.BlogInfoReceiver;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,7 +41,7 @@ public class AlarmHelper {
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Intent alarmIntent = new Intent(context, BootReceiver.class);
+        Intent alarmIntent = new Intent(context, BlogInfoReceiver.class);
         alarmIntent.setAction(ACTION_BLOG_NOTIFICATION);
 
         PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,0,alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -54,7 +53,7 @@ public class AlarmHelper {
                 pendingAlarmIntent);
 
         /* Restart if rebooted */
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        ComponentName receiver = new ComponentName(context, BlogInfoReceiver.class);
         context.getPackageManager().setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
@@ -64,7 +63,7 @@ public class AlarmHelper {
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Intent alarmIntent = new Intent(context, BootReceiver.class);
+        Intent alarmIntent = new Intent(context, BlogInfoReceiver.class);
         alarmIntent.setAction(ACTION_BLOG_NOTIFICATION);
 
         PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,
@@ -74,7 +73,7 @@ public class AlarmHelper {
         alarmManager.cancel(pendingAlarmIntent);
 
         /* Alarm won't start again if device is rebooted */
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        ComponentName receiver = new ComponentName(context, BlogInfoReceiver.class);
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,

@@ -28,7 +28,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import android.widget.Toast;
 
 import com.github.amarradi.bloginfo.FeedChecker;
 import com.github.amarradi.bloginfo.helpers.AlarmHelper;
@@ -40,12 +40,31 @@ import java.util.Calendar;
 import java.util.Objects;
 
 
-public class BootReceiver extends BroadcastReceiver {
+public class BlogInfoReceiver extends BroadcastReceiver {
 
     private static final String TIMED = "timed";
+    private static final String FIRST_LAUNCH = "first_launch";
     private final AlarmHelper alarm = new AlarmHelper();
 
     @Override
+    public void onReceive(Context context, Intent intent) {
+        Toast.makeText(context, "onReceive(Context context, Intent intent)", Toast.LENGTH_SHORT).show();
+        String action = intent.getAction();
+        if ((action.equalsIgnoreCase(FIRST_LAUNCH))) {
+            Toast.makeText(context, "The first boot", Toast.LENGTH_SHORT).show();
+            new FeedChecker(context,true).check();
+        } else {
+            Toast.makeText(context, "Not the first boot", Toast.LENGTH_SHORT).show();
+        }
+
+
+        if (AlarmHelper.ACTION_BLOG_NOTIFICATION.equals(intent.getAction())) {
+            new FeedChecker(context,false).check();
+        }
+
+    }
+
+  /*  @Override
     public void onReceive(Context context, Intent intent) {
         if (Build.VERSION_CODES.KITKAT <= VERSION.SDK_INT) {
             if (VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -64,9 +83,10 @@ public class BootReceiver extends BroadcastReceiver {
                 new FeedChecker(context, false).check();
             }
         }
-    }
+    }*/
 
     public static void start(Context context) {
+      // Toast.makeText(context, "start(Context context)", Toast.LENGTH_SHORT).show();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent pendingIntent = createPendingIntent(context);
 
@@ -90,14 +110,15 @@ public class BootReceiver extends BroadcastReceiver {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String formattedDate = df.format(defaultNoteAt.getTime());
-        //Log.i("Alarm", "Setting alarm at in BootReceiver " + formattedDate);
+        //Log.i("Alarm", "Setting alarm at in BlogInfoReceiver " + formattedDate);
         alarmManager.set(AlarmManager.RTC_WAKEUP, defaultNoteAt.getTimeInMillis(), pendingIntent);
 
     }
 
     private static PendingIntent createPendingIntent(Context context) {
-        Intent intent = new Intent(context, BootReceiver.class);
-        intent.putExtra(TIMED, true);
+      //  Toast.makeText(context, "PendingIntent createPendingIntent(Context context)", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, BlogInfoReceiver.class);
+        intent.putExtra(FIRST_LAUNCH, true);
 
         return PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 

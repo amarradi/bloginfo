@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.github.amarradi.bloginfo.receivers.BootReceiver;
+import com.github.amarradi.bloginfo.receivers.BlogInfoReceiver;
 
 import java.util.Objects;
 
@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String CHANNEL_ID = MainActivity.class.getName();
 
     public static final int DEFAULT_ALARM_TIME = 7;
-
+/*
     public static String FEED_URL = "https://www.marcusradisch.de/feed";
     public static String WEB_URL = "https://www.marcusradisch.de";
-/*
+*/
 
    public static String FEED_URL = "https://www.heise.de/rss/heise.rdf";
    public static String WEB_URL = "https://www.heise.de";
-*/
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        BootReceiver.start(getApplicationContext());
+        BlogInfoReceiver.start(getApplicationContext());
         requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setLogo(R.mipmap.timmy_turtle_logo_transparent);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
