@@ -19,7 +19,7 @@
         android:paddingEnd="0dp"
         android:paddingRight="0dp"
         android:text="@string/ask"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/md_theme_light_onPrimary"
         android:gravity="center_vertical|center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
