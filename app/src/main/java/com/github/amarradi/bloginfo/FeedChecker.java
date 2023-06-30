@@ -14,6 +14,7 @@ import android.preference.PreferenceManager;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
@@ -24,8 +25,8 @@ import java.net.URL;
 public class FeedChecker implements Runnable {
 
     private static final String LAST_FEED_CONTENT = "LAST_FEED_CONTENT";
-   // private static final String CURRENT_FEED_CONTENT = "CURRENT_FEED_CONTENT";
-   // private static final String PREFS = "PREFS";
+    private static final String CURRENT_FEED_CONTENT = "CURRENT_FEED_CONTENT";
+    private static final String PREFS = "PREFS";
 
 
     private final Context context;
@@ -47,12 +48,12 @@ public class FeedChecker implements Runnable {
     public void run() {
 
         String currentFeedContent = readFeedContent();
-    //    Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
+        Log.i(CURRENT_FEED_CONTENT,currentFeedContent);
 
         if (currentFeedContent != null) {
 
             String lastFeedContent = getLastFeedContent();
-      //      Log.i(LAST_FEED_CONTENT, lastFeedContent);
+            Log.i(LAST_FEED_CONTENT, lastFeedContent);
             if (!currentFeedContent.equals(lastFeedContent)) {
                 notifyUser();
             } else if (this.showToast) {
@@ -75,7 +76,7 @@ public class FeedChecker implements Runnable {
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
             String lastBuildDate = this.feedReader.parseLastBuildDate(in);
-        //    Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
+            Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
             //return IOUtils.toString(in, "utf-8").trim();
             return lastBuildDate.trim();
         } catch (Exception e) {
@@ -95,7 +96,7 @@ public class FeedChecker implements Runnable {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(MainActivity.WEB_URL));
-        PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, browserIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE);
 
         @SuppressLint("ResourceAsColor")
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.context, MainActivity.CHANNEL_ID)
@@ -122,7 +123,7 @@ public class FeedChecker implements Runnable {
         String prefers;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.context);
         prefers = preferences.getString(LAST_FEED_CONTENT, "").trim();
-        ///Log.i(PREFS,prefers);
+        Log.i("PREFS",prefers);
         if (prefers.isEmpty()) {
             return prefers;
         } else {

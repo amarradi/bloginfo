@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.github.amarradi.bloginfo">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:allowBackup="true"
-        android:fullBackupContent="true"
+  
+
         android:icon="@mipmap/timmy_turtle_logo_transparent"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/timmy_turtle_logo_transparent_round"
@@ -20,7 +21,8 @@
         <activity
             android:name=".MainActivity"
             android:icon="@mipmap/timmy_turtle_logo_transparent_round"
-            android:theme="@style/BlogInfo">
+            android:theme="@style/BlogInfo"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +38,8 @@
         <activity android:name=".ThanksActivity"
             android:icon="@mipmap/timmy_turtle_logo_transparent_round"
             android:parentActivityName=".MainActivity"/>
-        <receiver android:name=".receivers.BootReceiver">
+        <receiver android:name=".receivers.BootReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

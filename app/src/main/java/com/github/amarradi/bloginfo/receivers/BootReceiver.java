@@ -25,8 +25,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Build.VERSION;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -47,22 +45,18 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Build.VERSION_CODES.KITKAT <= VERSION.SDK_INT) {
-            if (VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                if((Objects.isNull(intent.getAction()))) {
-                    new FeedChecker(context, false).check();
-                } else {
-                    if (Objects.requireNonNull(intent.getAction()).equals("android.intent.action.BOOT_COMPLETED")) {
-                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-                        long toRingAt = prefs.getLong("scan_daily_interval", 0);
-                        alarm.cancelAlarm(context);
-                        alarm.setAlarm(context, toRingAt);
-                    }
-                }
+        if((Objects.isNull(intent.getAction()))) {
+            new FeedChecker(context, false).check();
+        } else {
+            if (Objects.requireNonNull(intent.getAction()).equals("android.intent.action.BOOT_COMPLETED")) {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                long toRingAt = prefs.getLong("scan_daily_interval", 0);
+                alarm.cancelAlarm(context);
+                alarm.setAlarm(context, toRingAt);
             }
-            if (AlarmHelper.ACTION_BLOG_NOTIFICATION.equals(intent.getAction())) {
-                new FeedChecker(context, false).check();
-            }
+        }
+        if (AlarmHelper.ACTION_BLOG_NOTIFICATION.equals(intent.getAction())) {
+            new FeedChecker(context, false).check();
         }
     }
 
@@ -72,16 +66,16 @@ public class BootReceiver extends BroadcastReceiver {
 
         Preferences prefs = Preferences.getInstance(context);
         Time nextNotificationTime = prefs.getNotificationTime();
-     //   Log.i("noteTime","noteTime: "+nextNotificationTime.toString());
+        Log.i("noteTime","noteTime: "+nextNotificationTime.toString());
 
         Calendar defaultNoteAt = Calendar.getInstance();
 
-        defaultNoteAt.set(Calendar.HOUR_OF_DAY, nextNotificationTime.getHours());
-        defaultNoteAt.set(Calendar.MINUTE, nextNotificationTime.getMinutes());
+        defaultNoteAt.set(Calendar.HOUR_OF_DAY,defaultNoteAt.get(Calendar.HOUR_OF_DAY));
+        defaultNoteAt.set(Calendar.MINUTE, defaultNoteAt.get(Calendar.MINUTE));
         defaultNoteAt.set(Calendar.SECOND, defaultNoteAt.getActualMinimum(Calendar.SECOND));
         defaultNoteAt.set(Calendar.MILLISECOND, defaultNoteAt.getActualMinimum(Calendar.MILLISECOND));
 
-       // Log.i("defNote","defNote: "+defaultNoteAt.getTime().toString());
+        Log.i("defNote","defNote: "+defaultNoteAt.getTime().toString());
 
         if (defaultNoteAt.before(Calendar.getInstance())) {
             defaultNoteAt.add(Calendar.DAY_OF_MONTH,1);
@@ -90,7 +84,7 @@ public class BootReceiver extends BroadcastReceiver {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String formattedDate = df.format(defaultNoteAt.getTime());
-        //Log.i("Alarm", "Setting alarm at in BootReceiver " + formattedDate);
+        Log.i("Alarm", "Setting alarm at in BootReceiver " + formattedDate);
         alarmManager.set(AlarmManager.RTC_WAKEUP, defaultNoteAt.getTimeInMillis(), pendingIntent);
 
     }
@@ -98,8 +92,12 @@ public class BootReceiver extends BroadcastReceiver {
     private static PendingIntent createPendingIntent(Context context) {
         Intent intent = new Intent(context, BootReceiver.class);
         intent.putExtra(TIMED, true);
-
-        return PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Log.i("createPendingIntent","created");
+        return PendingIntent.getBroadcast(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE);
 
     }
 }

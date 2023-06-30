@@ -36,7 +36,7 @@ public class AlarmHelper {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String formattedDate = df.format(defaultNoteAt.getTime());
-      //  Log.i("Alarm", "Setting alarm at " + formattedDate);
+        Log.i("Alarm", "Setting alarm at " + formattedDate);
 
         setNoteAt = defaultNoteAt.getTimeInMillis();
 
@@ -45,7 +45,7 @@ public class AlarmHelper {
         Intent alarmIntent = new Intent(context, BootReceiver.class);
         alarmIntent.setAction(ACTION_BLOG_NOTIFICATION);
 
-        PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,0,alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,0,alarmIntent, PendingIntent.FLAG_IMMUTABLE);
 
         /* Repeat it every 24 hours from the configured time */
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
@@ -69,8 +69,7 @@ public class AlarmHelper {
 
         PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context,
                 0,
-                alarmIntent,
-                0);
+                alarmIntent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.cancel(pendingAlarmIntent);
 
         /* Alarm won't start again if device is rebooted */
