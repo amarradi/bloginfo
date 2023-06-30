@@ -26,13 +26,13 @@ public class FeedChecker implements Runnable {
 
     private static final String LAST_FEED_CONTENT = "LAST_FEED_CONTENT";
     private static final String CURRENT_FEED_CONTENT = "CURRENT_FEED_CONTENT";
-    private static final String PREFS = "PREFS";
+   // private static final String PREFS = "PREFS";
 
 
     private final Context context;
     private final boolean showToast;
 
-    private FeedReader feedReader = new FeedReader();
+    private final FeedReader feedReader = new FeedReader();
 
 
     public FeedChecker(Context context, boolean showToast) {
@@ -76,7 +76,7 @@ public class FeedChecker implements Runnable {
         try {
             in = new URL(MainActivity.FEED_URL).openStream();
             String lastBuildDate = this.feedReader.parseLastBuildDate(in);
-            Log.i(feedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
+            Log.i(FeedReader.XML_TAG_LAST_BUILD_DATE, lastBuildDate);
             //return IOUtils.toString(in, "utf-8").trim();
             return lastBuildDate.trim();
         } catch (Exception e) {
